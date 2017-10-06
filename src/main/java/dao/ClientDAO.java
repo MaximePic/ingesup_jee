@@ -6,7 +6,7 @@ import java.sql.*;
 
 public class ClientDAO extends AbstractDAO {
 
-    AbstractDAO abstractDAO = new AbstractDAO();
+    public static AbstractDAO  abstractDAO = new AbstractDAO();
 
     public static final String DB_LOGIN = "root";
     public static final String DB_PASSWD = "root";
@@ -39,7 +39,7 @@ public class ClientDAO extends AbstractDAO {
         return result;
     }
 
-    public Client insertClient(String nom, String prenom, String login, String password) {
+    public static Client insertClient(String nom, String prenom, String login, String password) {
         Client result = new Client();
 
         try {
