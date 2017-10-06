@@ -1,17 +1,29 @@
 package model;
 
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
 public class Client {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int clientID;
     private String nom;
     private String prenom;
     private String password;
     private String login;
 
-    public String toString(){
-        return "ID: "+ clientID + System.getProperty("line.separator")
-                +"Nom: "+ nom + System.getProperty("line.separator")
-                +"Prenom: " + prenom + System.getProperty("line.separator")
-                +"Login: " + login;
+
+    @OneToMany
+    private List<Compte> comptes;
+
+    public int getClientID() {
+        return clientID;
+    }
+
+    public void setClientID(int clientID) {
+        this.clientID = clientID;
     }
 
     public String getNom() {
@@ -26,6 +38,14 @@ public class Client {
         return prenom;
     }
 
+    public List<Compte> getComptes() {
+        return comptes;
+    }
+
+    public void setComptes(List<Compte> comptes) {
+        this.comptes = comptes;
+    }
+
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
@@ -38,20 +58,11 @@ public class Client {
         this.password = password;
     }
 
-
     public String getLogin() {
         return login;
     }
 
     public void setLogin(String login) {
         this.login = login;
-    }
-
-    public int getClientID() {
-        return clientID;
-    }
-
-    public void setClientID(int clientID) {
-        this.clientID = clientID;
     }
 }
