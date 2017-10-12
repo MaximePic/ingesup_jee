@@ -1,6 +1,6 @@
-package dao;
+package maBanque.dao;
 
-import model.Client;
+import maBanque.model.Client;
 
 import java.sql.*;
 

@@ -20,12 +20,12 @@
 
     <!-- LOGGERS -->
     <Loggers>
-        <Logger name="maBanque" level="info" additivity="false">
-            <AppenderRef ref="Console" />
-            <AppenderRef ref="RollingFile" />
+        <Logger name="maBanque" level="debug" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingFile"/>
         </Logger>
         <Root level="warn">
-            <AppenderRef ref="Console"/>
+           <!-- <AppenderRef ref="Console"/-->
         </Root>
     </Loggers>
 

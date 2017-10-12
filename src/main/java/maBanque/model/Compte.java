@@ -1,4 +1,4 @@
-package model;
+package maBanque.model;
 
 import javax.persistence.*;
 import java.util.List;
@@ -10,7 +10,7 @@ public class Compte {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int numero;
     private String libelle;
-    @OneToMany(mappedBy= "leCompte", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    @OneToMany(mappedBy= "leCompte", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     List<Transaction> transactions;
 
     @ManyToOne
