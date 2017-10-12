@@ -17,6 +17,8 @@ public class Compte {
     @JoinColumn(name="clientID")
     private Client client;
 
+
+    //****GETTERS AND SETTERS****//
     public int getNumero() {
         return numero;
     }

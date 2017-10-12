@@ -22,6 +22,8 @@ public class Client {
 
     }
 
+    //****GETTERS AND SETTERS****//
+
     public int getClientID() {
         return clientID;
     }
