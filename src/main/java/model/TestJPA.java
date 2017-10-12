@@ -25,6 +25,7 @@ public class TestJPA {
 
         //Create Compte
         Compte compte = new Compte();
+        compte.setClient(client);
         compte.setLibelle("Livret A");
         List<Compte> listeComptes = new ArrayList<Compte>();
         listeComptes.add(compte);

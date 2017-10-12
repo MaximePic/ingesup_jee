@@ -1,18 +1,29 @@
 package model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Compte {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int numero;
     private String libelle;
+    @OneToMany(mappedBy= "leCompte", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+    List<Transaction> transactions;
 
     @ManyToOne
+    @JoinColumn(name="clientID")
     private Client client;
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
 
     public String getLibelle() {
         return libelle;
@@ -21,4 +32,21 @@ public class Compte {
     public void setLibelle(String libelle) {
         this.libelle = libelle;
     }
+
+    public List<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
 }

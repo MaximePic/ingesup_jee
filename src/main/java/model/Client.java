@@ -15,8 +15,12 @@ public class Client {
     private String login;
 
 
-    @OneToMany
+    @OneToMany(mappedBy="client", cascade=CascadeType.ALL)
     private List<Compte> comptes;
+
+    public Client(){
+
+    }
 
     public int getClientID() {
         return clientID;
