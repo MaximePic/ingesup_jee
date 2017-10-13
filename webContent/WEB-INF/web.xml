@@ -54,7 +54,7 @@
         <url-pattern>/detail</url-pattern>
     </servlet-mapping>
 
-    <!-- Virment -->
+    <!-- Virement -->
     <servlet>
         <servlet-name>VirementServlet</servlet-name>
         <servlet-class>maBanque.servlet.Virement</servlet-class>
@@ -62,5 +62,15 @@
     <servlet-mapping>
         <servlet-name>VirementServlet</servlet-name>
         <url-pattern>/virement</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
     </servlet-mapping>
 </web-app>

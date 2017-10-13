@@ -8,14 +8,10 @@ public class ClientDAO extends AbstractDAO {
 
     public static AbstractDAO  abstractDAO = new AbstractDAO();
 
-    public static final String DB_LOGIN = "root";
-    public static final String DB_PASSWD = "root";
-
     public Client loadClientById(int clientID) {
         Client result = new Client();
-
-
         Connection con = abstractDAO.JDBCConnection();
+
         try {
             PreparedStatement stmt = con.prepareStatement("SELECT clientID, nom, prenom, login FROM client where clientID=?");
             stmt.setInt(1, clientID);
