@@ -14,7 +14,7 @@ public class Transaction {
     private Date date;
 
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Compte leCompte;
 
 
