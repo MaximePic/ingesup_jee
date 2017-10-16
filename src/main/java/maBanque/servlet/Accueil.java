@@ -22,6 +22,6 @@ public class Accueil extends HttpServlet {
         List<Compte> accountList = compteDAO.loadAccountsByClientId(17);
 
         request.setAttribute("accountList",accountList);
-        request.getRequestDispatcher("/accueil.xhtml").forward(request, response);
+        request.getRequestDispatcher("/templates/accueil.xhtml").forward(request, response);
     }
 }

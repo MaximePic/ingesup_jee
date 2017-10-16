@@ -14,6 +14,6 @@ public class Credit extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.getWriter().append("<h1>Credits</h1>");
+        request.getRequestDispatcher("/templates/credit.xhtml").forward(request, response);
     }
 }

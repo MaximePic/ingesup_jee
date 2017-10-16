@@ -1,0 +1,11 @@
+.header-wrap {
+    background: #333333;
+    /*border removed*/
+    padding:2%;
+}
+
+.logo-banque{
+    content: url("/images/logo_banque.png");
+    margin-right: auto;
+    width:10%;
+}
