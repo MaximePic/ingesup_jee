@@ -1,59 +1,100 @@
 package maBanque.dao;
 
-import maBanque.model.Client;
 import maBanque.model.Compte;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import javax.persistence.Query;
+import javax.transaction.Transactional;
 import java.util.List;
 
-import static maBanque.constants.Constants.PERSISTENCE_UNIT_NAME;
 
 public class CompteDAO extends AbstractDAO {
-    public static AbstractDAO  abstractDAO = new AbstractDAO();
+    public static AbstractDAO abstractDAO = new AbstractDAO();
 
-    private static EntityManagerFactory factory;
-    EntityManager em = null;
+    /**
+     * Méthode permettant de récupérer les comptes d'un client
+     * @param clientId l'id du client
+     * @return
+     */
+    public List<Compte> getAccountsByClientId(int clientId) {
 
-    public List<Compte> loadAccountsByClientId(int clientId){
-        List<Compte> accountList = new ArrayList<>();
+        //Create connexion
+        EntityManager em =  abstractDAO.newConnexion();
 
-        try {
-            //Create factory
-            factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-            em = factory.createEntityManager();
-            em.getTransaction().begin();
+        //Requete
+        Query query = em.createQuery("SELECT c FROM Compte c where c.client.clientID = :clientId")
+                .setParameter("clientId", clientId);
 
-            //Requete
-            Connection con = abstractDAO.JDBCConnection();
-            PreparedStatement stmt = con.prepareStatement("SELECT * FROM Compte where clientID=?");
-            stmt.setInt(1, clientId);
-            ResultSet rs = stmt.executeQuery();
+        List<Compte> accountList  = query.getResultList();
 
-            //Resultat
-            while (rs.next()) {
-                Compte actualAccount = new Compte();
-                actualAccount.setLibelle(rs.getString("libelle"));
-                actualAccount.setNumero(rs.getInt("numero"));
 
-                accountList.add(actualAccount);
-            }
+        //Commit
+        em.getTransaction().commit();
 
-            //Commit
-            em.getTransaction().commit();
-            rs.close();
-            con.close();
+        //Close connexion
+        abstractDAO.closeConnexion(em);
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
         return accountList;
     }
+
+    /**
+     * Méthode permettant de réaliser un virement
+     * @param sourceAccount compte source à débiter
+     * @param destinationAccount compte destonataire à créditer
+     * @param montant montant de la transaction
+     */
+    public void virement(Compte sourceAccount, Compte destinationAccount, double montant) {
+
+        debitCompte(sourceAccount, montant);
+
+        creditCompte(destinationAccount, montant);
+    }
+
+    private void debitCompte(Compte compte, double montant){
+
+        //Numéro de compte à débiter
+        int compteSource = compte.getNumero();
+
+        //Create connexion
+        EntityManager em =  abstractDAO.newConnexion();
+
+        //Requete de débit du compte
+        Query query = em.createQuery("UPDATE Compte c SET c.montant= c.montant-:somme where numero = :compteSource")
+                .setParameter("somme", montant)
+                .setParameter("compteSource", compteSource);
+
+        query.executeUpdate();
+
+        //Commit
+        em.getTransaction().commit();
+
+        //Fermeture de la connexion
+        abstractDAO.closeConnexion(em);
+    }
+
+    private void creditCompte(Compte compte, double montant){
+
+        //Numéro de compte à créditer
+        int compteDestinataire = compte.getNumero();
+
+        //Create connexion
+        EntityManager em =  abstractDAO.newConnexion();
+
+        //Requete de débit du compte
+        Query query = em.createQuery("UPDATE Compte c SET c.montant= c.montant+:somme where numero = :compteDestinataire")
+                .setParameter("somme", montant)
+                .setParameter("compteDestinataire", compteDestinataire);
+
+        query.executeUpdate();
+
+        //Commit
+        em.getTransaction().commit();
+
+        //Fermeture de la connexion
+        abstractDAO.closeConnexion(em);
+
+
+    }
+
 
 }

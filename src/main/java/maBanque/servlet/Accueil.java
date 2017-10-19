@@ -19,9 +19,10 @@ public class Accueil extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Compte> accountList = compteDAO.loadAccountsByClientId(17);
+        List<Compte> accountList = compteDAO.getAccountsByClientId(1);
+        compteDAO.virement(accountList.get(1), accountList.get(0), 1050);
 
-        request.setAttribute("accountList",accountList);
+        request.setAttribute("accountList", accountList);
         request.getRequestDispatcher("/templates/accueil.xhtml").forward(request, response);
     }
 }

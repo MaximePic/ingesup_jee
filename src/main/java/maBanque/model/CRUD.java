@@ -29,10 +29,11 @@ public class CRUD {
      * @param client
      * @return
      */
-    public static Compte createAccount(Client client, String libelle){
+    public static Compte createAccount(Client client, String libelle, double montant){
         Compte compte = new Compte();
         compte.setClient(client);
         compte.setLibelle(libelle);
+        compte.setMontant(montant);
 
         return compte;
     }

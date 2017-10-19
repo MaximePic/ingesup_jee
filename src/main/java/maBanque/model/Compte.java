@@ -10,6 +10,7 @@ public class Compte {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int numero;
     private String libelle;
+    private double montant;
     @OneToMany(mappedBy= "leCompte", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     List<Transaction> transactions;
 
@@ -49,6 +50,14 @@ public class Compte {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public double getMontant() {
+        return montant;
+    }
+
+    public void setMontant(double montant) {
+        this.montant = montant;
     }
 
 }

@@ -1,23 +1,44 @@
 package maBanque.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 
-import static maBanque.constants.Constants.DB_LOGIN;
-import static maBanque.constants.Constants.DB_PASSWORD;
+import javax.persistence.*;
+
+import static maBanque.constants.Constants.PERSISTENCE_UNIT_NAME;
 
 public class AbstractDAO {
 
-    public static Connection JDBCConnection() {
-        Connection con = null;
-        try {
-            con = DriverManager.
-                    getConnection("jdbc:mysql://localhost:3306/db_banque_jpa", DB_LOGIN, DB_PASSWORD);
+    private static EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);;
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return con;
+    private static EntityManager em;
+
+    /**
+     * Méthode permettant d'ouvrir une connexion
+     * @return em
+     */
+    public EntityManager newConnexion(){
+
+        EntityManager em = factory.createEntityManager();
+        em.getTransaction().begin();
+        return em;
     }
+
+    /**
+     * Méthode permettant de fermer une connexion
+     */
+    public void closeConnexion(EntityManager em) {
+        if (em != null) {
+            if (em.isOpen()) {
+                EntityTransaction t = em.getTransaction();
+                if (t.isActive()) {
+                    try {
+                        t.rollback();
+                    } catch (PersistenceException e) {
+                    }
+                }
+                em.close();
+            }
+        }
+    }
+
+
 }

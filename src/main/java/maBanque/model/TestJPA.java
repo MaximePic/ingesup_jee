@@ -27,19 +27,23 @@ public class TestJPA {
 
             //Create Client
             Client client = createClient("root", "root", "Pic", "Maxime");
+            Client client2 = createClient("admin", "admin", "Administrator", "Administrator");
 
             //Create Compte
-            Compte compte = createAccount(client, "Livret A");
+            Compte compte1 = createAccount(client, "Livret A", 1000.00);
+            Compte compte2 = createAccount(client2, "Livret A", 10000.00);
 
             //Create liste de compte
-            createClientAccountList(compte, client);
+            createClientAccountList(compte1, client);
+            createClientAccountList(compte2, client2);
 
             //Create transaction
-            Transaction transaction = createTransaction(compte, "Transaction 1");
+            Transaction transaction = createTransaction(compte1, "Transaction 1");
 
             //Persistence
             em.persist(client);
-            em.persist(compte);
+            em.persist(client2);
+            em.persist(compte1);
             em.persist(transaction);
 
             //Commit

@@ -8,7 +8,7 @@ public class ClientDAO extends AbstractDAO {
 
     public static AbstractDAO  abstractDAO = new AbstractDAO();
 
-    public Client loadClientById(int clientID) {
+ /*   public Client loadClientById(int clientID) {
         Client result = new Client();
         Connection con = abstractDAO.JDBCConnection();
 
@@ -77,6 +77,6 @@ public class ClientDAO extends AbstractDAO {
         }
 
         return result;
-    }
+    }*/
 
 }
