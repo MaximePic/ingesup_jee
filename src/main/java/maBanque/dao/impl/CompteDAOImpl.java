@@ -1,21 +1,23 @@
-package maBanque.dao;
+package maBanque.dao.impl;
 
+import maBanque.dao.IAbstractDAO;
+import maBanque.dao.ICompteDAO;
 import maBanque.model.Compte;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.transaction.Transactional;
 import java.util.List;
 
 
-public class CompteDAO extends AbstractDAO {
-    public static AbstractDAO abstractDAO = new AbstractDAO();
+public class CompteDAOImpl extends AbstractDAOImpl implements ICompteDAO {
+        public static IAbstractDAO abstractDAO = new AbstractDAOImpl();
 
     /**
      * Méthode permettant de récupérer les comptes d'un client
      * @param clientId l'id du client
      * @return
      */
+    @Override
     public List<Compte> getAccountsByClientId(int clientId) {
 
         //Create connexion
@@ -43,6 +45,7 @@ public class CompteDAO extends AbstractDAO {
      * @param destinationAccount compte destonataire à créditer
      * @param montant montant de la transaction
      */
+    @Override
     public void virement(Compte sourceAccount, Compte destinationAccount, double montant) {
 
         debitCompte(sourceAccount, montant);
@@ -50,7 +53,13 @@ public class CompteDAO extends AbstractDAO {
         creditCompte(destinationAccount, montant);
     }
 
-    private void debitCompte(Compte compte, double montant){
+    /**
+     * Méthode permettant de débiter un compte
+     * @param compte
+     * @param montant
+     */
+    @Override
+    public void debitCompte(Compte compte, double montant){
 
         //Numéro de compte à débiter
         int compteSource = compte.getNumero();
@@ -72,7 +81,13 @@ public class CompteDAO extends AbstractDAO {
         abstractDAO.closeConnexion(em);
     }
 
-    private void creditCompte(Compte compte, double montant){
+    /**
+     * Méthode permettant de crediter un compte
+     * @param compte
+     * @param montant
+     */
+    @Override
+    public void creditCompte(Compte compte, double montant){
 
         //Numéro de compte à créditer
         int compteDestinataire = compte.getNumero();

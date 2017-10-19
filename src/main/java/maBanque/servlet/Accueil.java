@@ -1,6 +1,8 @@
 package maBanque.servlet;
 
-import maBanque.dao.CompteDAO;
+import maBanque.controller.CompteController;
+import maBanque.dao.ICompteDAO;
+import maBanque.dao.impl.CompteDAOImpl;
 import maBanque.model.Compte;
 
 import javax.servlet.ServletException;
@@ -11,16 +13,18 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/accueil")
+@WebServlet("/accueil/*")
 public class Accueil extends HttpServlet {
-    CompteDAO compteDAO = new CompteDAO();
+
+    CompteController compteCtrl = new CompteController();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Compte> accountList = compteDAO.getAccountsByClientId(1);
-        compteDAO.virement(accountList.get(1), accountList.get(0), 1050);
+
+        List<Compte> accountList = compteCtrl.getAccountsByClientId(1);
+        compteCtrl.virement(accountList.get(1), accountList.get(0), 1050);
 
         request.setAttribute("accountList", accountList);
         request.getRequestDispatcher("/templates/accueil.xhtml").forward(request, response);

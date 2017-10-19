@@ -1,5 +1,7 @@
 package maBanque.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -15,7 +17,8 @@ public class Client {
     private String login;
 
 
-    @OneToMany(mappedBy="client", cascade=CascadeType.ALL)
+    @OneToMany(mappedBy="client", cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<Compte> comptes;
 
     public Client(){

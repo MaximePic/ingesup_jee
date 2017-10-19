@@ -1,16 +1,12 @@
-package maBanque.dao;
+package maBanque.dao.impl;
 
-import maBanque.model.Client;
+public class ClientDAOImpl extends AbstractDAOImpl {
 
-import java.sql.*;
-
-public class ClientDAO extends AbstractDAO {
-
-    public static AbstractDAO  abstractDAO = new AbstractDAO();
+    public static AbstractDAOImpl abstractDAOImpl = new AbstractDAOImpl();
 
  /*   public Client loadClientById(int clientID) {
         Client result = new Client();
-        Connection con = abstractDAO.JDBCConnection();
+        Connection con = abstractDAOImpl.JDBCConnection();
 
         try {
             PreparedStatement stmt = con.prepareStatement("SELECT clientID, nom, prenom, login FROM client where clientID=?");
@@ -39,7 +35,7 @@ public class ClientDAO extends AbstractDAO {
         Client result = new Client();
 
         try {
-            Connection con = abstractDAO.JDBCConnection();
+            Connection con = abstractDAOImpl.JDBCConnection();
 
             PreparedStatement stmt = con.prepareStatement("insert into client (nom, prenom, login, password)" +
                     " values (?, ?, ?, ?)");
@@ -60,7 +56,7 @@ public class ClientDAO extends AbstractDAO {
     }
 
     public Client deleteClientById(int clientID) {
-        Connection con = abstractDAO.JDBCConnection();
+        Connection con = abstractDAOImpl.JDBCConnection();
         Client result = new Client();
 
         try {

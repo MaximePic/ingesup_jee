@@ -1,5 +1,7 @@
 package maBanque.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -11,7 +13,9 @@ public class Compte {
     private int numero;
     private String libelle;
     private double montant;
+
     @OneToMany(mappedBy= "leCompte", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @JsonIgnore
     List<Transaction> transactions;
 
     @ManyToOne
