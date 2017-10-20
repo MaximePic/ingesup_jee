@@ -2,6 +2,7 @@ package maBanque.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.faces.bean.ManagedBean;
 import javax.persistence.*;
 import java.util.List;
 

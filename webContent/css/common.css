@@ -73,3 +73,8 @@ td{
 table{
     border:none !important;
 }
+
+label{
+    color: #fff;
+    margin-right: 50px;
+}

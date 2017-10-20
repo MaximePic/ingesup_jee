@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition template="/templates/masterTemplate.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+
+    <ui:define name="title">Virement</ui:define>
+
+    <ui:define name="pageName">Virement</ui:define>
+
+    <ui:define name="content">
+
+        <h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
+
+            <!-- Débit -->
+            <p:outputLabel for="debiter" value="Compte à débiter: " />
+            <p:selectOneMenu id="debiter" value="#{compteADebiter}">
+                <c:forEach items="${accountList}" var="compte">
+                    <f:selectItem itemLabel="${compte.libelle}" itemValue="${compte.numero}" />
+                </c:forEach>
+            </p:selectOneMenu>
+
+            <!-- Montant -->
+            <p:outputLabel for="montant" value="Montant de la transaction: " />
+            <p:column>
+                <p:inputNumber id="montant"  symbol=" €" symbolPosition="s"
+                               decimalSeparator="," thousandSeparator=".">
+                </p:inputNumber>
+            </p:column>
+
+
+            <!-- Crédit -->
+            <p:outputLabel for="crediter" value="Compte à créditer: " />
+            <p:selectOneMenu id="crediter" value="#{compteACrediter}">
+                <c:forEach items="${accountList}" var="compte">
+                    <f:selectItem itemLabel="${compte.libelle}" itemValue="${compte.numero}" />
+                </c:forEach>
+            </p:selectOneMenu>
+        </h:panelGrid>
+    </ui:define>
+</ui:composition>

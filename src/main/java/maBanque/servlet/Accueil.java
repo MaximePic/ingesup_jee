@@ -17,6 +17,7 @@ import java.util.List;
 public class Accueil extends HttpServlet {
 
     CompteController compteCtrl = new CompteController();
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
