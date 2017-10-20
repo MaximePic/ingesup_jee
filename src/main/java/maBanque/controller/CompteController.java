@@ -4,8 +4,12 @@ import maBanque.dao.ICompteDAO;
 import maBanque.dao.impl.CompteDAOImpl;
 import maBanque.model.Compte;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import java.util.List;
 
+@ManagedBean(name= "compteCtrl")
+@SessionScoped
 public class CompteController {
     ICompteDAO compteDAO = new CompteDAOImpl();
 
@@ -16,6 +20,10 @@ public class CompteController {
 
     public void virement(Compte sourceAccount, Compte destinationAccount, double montant){
         compteDAO.virement(sourceAccount, destinationAccount, montant);
+    }
+
+    public void lol(){
+        System.out.println("lel");
     }
 
     public void debitCompte(Compte compte, double montant){

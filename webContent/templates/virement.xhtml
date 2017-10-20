@@ -16,32 +16,38 @@
 
     <ui:define name="content">
 
-        <h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
+        <h:form>
+            <h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
 
-            <!-- Débit -->
-            <p:outputLabel for="debiter" value="Compte à débiter: " />
-            <p:selectOneMenu id="debiter" value="#{compteADebiter}">
-                <c:forEach items="${accountList}" var="compte">
-                    <f:selectItem itemLabel="${compte.libelle}" itemValue="${compte.numero}" />
-                </c:forEach>
-            </p:selectOneMenu>
+                <!-- Débit -->
+                <p:outputLabel for="debiter" value="Compte à débiter: " />
+                <p:selectOneMenu id="debiter" value="${compteADebiter}">
+                    <c:forEach items="${accountList}" var="compte">
+                        <f:selectItem itemLabel="${compte.libelle}" itemValue="${compte.numero}" />
+                    </c:forEach>
+                </p:selectOneMenu>
 
-            <!-- Montant -->
-            <p:outputLabel for="montant" value="Montant de la transaction: " />
-            <p:column>
-                <p:inputNumber id="montant"  symbol=" €" symbolPosition="s"
-                               decimalSeparator="," thousandSeparator=".">
-                </p:inputNumber>
-            </p:column>
+                <!-- Montant -->
+                <p:outputLabel for="montant" value="Montant de la transaction: " />
+                <p:column>
+                    <p:inputNumber id="montant"  symbol=" €" symbolPosition="s"
+                                   decimalSeparator="," thousandSeparator="."
+                                   value="${montant}">
+                    </p:inputNumber>
+                </p:column>
 
 
-            <!-- Crédit -->
-            <p:outputLabel for="crediter" value="Compte à créditer: " />
-            <p:selectOneMenu id="crediter" value="#{compteACrediter}">
-                <c:forEach items="${accountList}" var="compte">
-                    <f:selectItem itemLabel="${compte.libelle}" itemValue="${compte.numero}" />
-                </c:forEach>
-            </p:selectOneMenu>
-        </h:panelGrid>
+                <!-- Crédit -->
+                <p:outputLabel for="crediter" value="Compte à créditer: " />
+                <p:selectOneMenu id="crediter" value="#{compteACrediter}">
+                    <c:forEach items="${accountList}" var="compte">
+                        <f:selectItem itemLabel="${compte.libelle}" itemValue="${compte.numero}" />
+                    </c:forEach>
+                </p:selectOneMenu>
+            </h:panelGrid>
+
+            <p:commandButton value="Valider" actionListener="#{compteCtrl.lol}"
+                             process="@this" styleClass="ui-priority-primary" />
+        </h:form>
     </ui:define>
 </ui:composition>
