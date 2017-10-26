@@ -32,12 +32,12 @@ public class CompteController {
      * @param destinationAccountNum compte crediteur
      * @param montant montant de la transaction
      */
-    public void virement(int sourceAccountNum, int destinationAccountNum, double montant){
+    public void virement(String libelle, int sourceAccountNum, int destinationAccountNum, double montant){
         Compte sourceAccount = compteDAO.getAccountById(sourceAccountNum);
         Compte destinationAccount = compteDAO.getAccountById(destinationAccountNum);
         compteDAO.virement(sourceAccount, destinationAccount, montant);
 
-        createTransaction(montant, sourceAccount, destinationAccount);
+        createTransaction(libelle, montant, sourceAccount, destinationAccount);
     }
 
     /**
@@ -65,8 +65,8 @@ public class CompteController {
     }
 
 
-    public void createTransaction(double montant, Compte compteDebiteur, Compte compteCrediteur){
-        transactionDAO.createTransaction("Loto", montant, compteDebiteur, compteCrediteur);
+    public void createTransaction(String libelle, double montant, Compte compteDebiteur, Compte compteCrediteur){
+        transactionDAO.createTransaction(libelle, montant, compteDebiteur, compteCrediteur);
     }
 
 

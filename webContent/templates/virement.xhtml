@@ -47,10 +47,22 @@
                     </c:forEach>
                     <p:ajax process="@this" listener="#{compteCtrl.updateCompteCrediteur}"/>
                 </p:selectOneMenu>
+
+
+                <!-- Libelle -->
+                <p:outputLabel for="raison" value="Raison du virement: " />
+                <p:inputText id="raison" value="#{compteCtrl.transactionBean.libelle}">
+                    <p:ajax event="keyup" update="@this" process="@this"/>
+                </p:inputText>
             </h:panelGrid>
 
             <p:commandButton value="Valider"
-                             actionListener="#{compteCtrl.virement(compteCtrl.transactionBean.compteDebiteur, compteCtrl.transactionBean.compteCrediteur, compteCtrl.transactionBean.montant)}"
+                             actionListener="#{compteCtrl.virement(
+                             compteCtrl.transactionBean.libelle,
+                             compteCtrl.transactionBean.compteDebiteur,
+                             compteCtrl.transactionBean.compteCrediteur,
+                             compteCtrl.transactionBean.montant)}"
+
                              process="@this" styleClass="ui-priority-primary" />
         </h:form>
     </ui:define>
