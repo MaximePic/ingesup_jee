@@ -2,12 +2,11 @@ package maBanque.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.faces.bean.ManagedBean;
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Compte {
+public class CompteEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,11 +16,11 @@ public class Compte {
 
     @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     @JsonIgnore
-    List<Transaction> transactions;
+    List<TransactionEntity> transactionEntities;
 
     @ManyToOne
     @JoinColumn(name="clientID")
-    private Client client;
+    private ClientEntity clientEntity;
 
 
     //****GETTERS AND SETTERS****//
@@ -41,20 +40,20 @@ public class Compte {
         this.libelle = libelle;
     }
 
-    public List<Transaction> getTransactions() {
-        return transactions;
+    public List<TransactionEntity> getTransactionEntities() {
+        return transactionEntities;
     }
 
-    public void setTransactions(List<Transaction> transactions) {
-        this.transactions = transactions;
+    public void setTransactionEntities(List<TransactionEntity> transactionEntities) {
+        this.transactionEntities = transactionEntities;
     }
 
-    public Client getClient() {
-        return client;
+    public ClientEntity getClientEntity() {
+        return clientEntity;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setClientEntity(ClientEntity clientEntity) {
+        this.clientEntity = clientEntity;
     }
 
     public double getMontant() {

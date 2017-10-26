@@ -1,7 +1,5 @@
 package maBanque.bean;
 
-import maBanque.model.Compte;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import java.util.Date;

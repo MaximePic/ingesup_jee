@@ -1,17 +1,17 @@
 package maBanque.dao;
 
-import maBanque.model.Compte;
+import maBanque.model.CompteEntity;
 
 import java.util.List;
 
 public interface ICompteDAO {
-    List<Compte> getAccountsByClientId(int clientId);
+    List<CompteEntity> getAccountsByClientId(int clientId);
 
-    void virement(Compte sourceAccount, Compte destinationAccount, double montant);
+    void virement(CompteEntity sourceAccount, CompteEntity destinationAccount, double montant);
 
-    void debitCompte(Compte compte, double montant);
+    void debitCompte(CompteEntity compteEntity, double montant);
 
-    void creditCompte(Compte compte, double montant);
+    void creditCompte(CompteEntity compteEntity, double montant);
 
-    Compte getAccountById(int accountId);
+    CompteEntity getAccountById(int accountId);
 }

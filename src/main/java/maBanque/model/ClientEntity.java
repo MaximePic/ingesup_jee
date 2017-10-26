@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Client {
+public class ClientEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,9 +19,9 @@ public class Client {
 
     @OneToMany(mappedBy="client", cascade=CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIgnore
-    private List<Compte> comptes;
+    private List<CompteEntity> compteEntities;
 
-    public Client(){
+    public ClientEntity(){
 
     }
 
@@ -47,12 +47,12 @@ public class Client {
         return prenom;
     }
 
-    public List<Compte> getComptes() {
-        return comptes;
+    public List<CompteEntity> getCompteEntities() {
+        return compteEntities;
     }
 
-    public void setComptes(List<Compte> comptes) {
-        this.comptes = comptes;
+    public void setCompteEntities(List<CompteEntity> compteEntities) {
+        this.compteEntities = compteEntities;
     }
 
     public void setPrenom(String prenom) {

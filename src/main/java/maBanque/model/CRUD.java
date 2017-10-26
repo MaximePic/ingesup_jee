@@ -14,58 +14,58 @@ public class CRUD {
      * Méthode permettant de créer un client
      * @return le client
      */
-    public static Client createClient(String login, String password, String nom, String prenom){
-        Client client = new Client();
-        client.setLogin(login);
-        client.setPassword(password);
-        client.setNom(nom);
-        client.setPrenom(prenom);
+    public static ClientEntity createClient(String login, String password, String nom, String prenom){
+        ClientEntity clientEntity = new ClientEntity();
+        clientEntity.setLogin(login);
+        clientEntity.setPassword(password);
+        clientEntity.setNom(nom);
+        clientEntity.setPrenom(prenom);
 
-        return client;
+        return clientEntity;
     }
 
     /**
      * Méthode permettant de créer un compte
-     * @param client
+     * @param clientEntity
      * @return
      */
-    public static Compte createAccount(Client client, String libelle, double montant){
-        Compte compte = new Compte();
-        compte.setClient(client);
-        compte.setLibelle(libelle);
-        compte.setMontant(montant);
+    public static CompteEntity createAccount(ClientEntity clientEntity, String libelle, double montant){
+        CompteEntity compteEntity = new CompteEntity();
+        compteEntity.setClientEntity(clientEntity);
+        compteEntity.setLibelle(libelle);
+        compteEntity.setMontant(montant);
 
-        return compte;
+        return compteEntity;
     }
 
     /**
-     * Méthode permettant d'associer une liste de comptes à un client
-     * @param compte
-     * @param client
+     * Méthode permettant d'associer une liste de comptes à un clientEntity
+     * @param compteEntity
+     * @param clientEntity
      */
-    public static void createClientAccountList(Compte compte, Client client){
-        List<Compte> listeComptes = new ArrayList<Compte>();
-        listeComptes.add(compte);
-        client.setComptes(listeComptes);
+    public static void createClientAccountList(CompteEntity compteEntity, ClientEntity clientEntity){
+        List<CompteEntity> listeCompteEntities = new ArrayList<CompteEntity>();
+        listeCompteEntities.add(compteEntity);
+        clientEntity.setCompteEntities(listeCompteEntities);
     }
 
     /**
      * Méthode permettant de créer une transaction
-     * @param compteDebiteur
-     * @param compteCrediteur
+     * @param compteEntityDebiteur
+     * @param compteEntityCrediteur
      * @param montant
      * @param libelle
      * @return
      */
-    public static Transaction createTransaction(Compte compteDebiteur,Compte compteCrediteur, double montant, String libelle){
+    public static TransactionEntity createTransaction(CompteEntity compteEntityDebiteur, CompteEntity compteEntityCrediteur, double montant, String libelle){
         Date date= new Date();
 
-        Transaction transaction = new Transaction();
-        transaction.setLibelle(libelle);
-        transaction.setDate(new Timestamp(date.getTime()));
-        transaction.setCompteDebiteur(compteDebiteur);
-        transaction.setCompteCrediteur(compteCrediteur);
-        transaction.setMontant(montant);
-        return transaction;
+        TransactionEntity transactionEntity = new TransactionEntity();
+        transactionEntity.setLibelle(libelle);
+        transactionEntity.setDate(new Timestamp(date.getTime()));
+        transactionEntity.setCompteEntityDebiteur(compteEntityDebiteur);
+        transactionEntity.setCompteEntityCrediteur(compteEntityCrediteur);
+        transactionEntity.setMontant(montant);
+        return transactionEntity;
     }
 }

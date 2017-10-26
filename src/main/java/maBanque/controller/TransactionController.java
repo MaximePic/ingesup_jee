@@ -2,7 +2,7 @@ package maBanque.controller;
 
 import maBanque.dao.ITransactionDAO;
 import maBanque.dao.impl.TransactionDAOImpl;
-import maBanque.model.Transaction;
+import maBanque.model.TransactionEntity;
 
 import java.util.List;
 
@@ -15,8 +15,8 @@ public class TransactionController {
      * @param compteId id du client
      * @return
      */
-    public List<Transaction> getTransferListByAccountId(int compteId){
-        List<Transaction> transferList = transactionDAO.getTransferListByAccountId(compteId);
+    public List<TransactionEntity> getTransferListByAccountId(int compteId){
+        List<TransactionEntity> transferList = transactionDAO.getTransferListByAccountId(compteId);
         return transferList;
     }
 

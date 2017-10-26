@@ -2,8 +2,8 @@ package maBanque.dao.impl;
 
 import maBanque.dao.IAbstractDAO;
 import maBanque.dao.ITransactionDAO;
-import maBanque.model.Compte;
-import maBanque.model.Transaction;
+import maBanque.model.CompteEntity;
+import maBanque.model.TransactionEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -15,21 +15,21 @@ public class TransactionDAOImpl implements ITransactionDAO{
     public static IAbstractDAO abstractDAO = new AbstractDAOImpl();
 
     @Override
-    public void createTransaction(String libelle, double montant, Compte compteDebiteur, Compte compteCrediteur) {
+    public void createTransaction(String libelle, double montant, CompteEntity compteEntityDebiteur, CompteEntity compteEntityCrediteur) {
         Date date= new Date();
 
         //Create connexion
         EntityManager em =  abstractDAO.newConnexion();
 
-        Transaction transaction = new Transaction();
-        transaction.setLibelle(libelle);
-        transaction.setDate(new Timestamp(date.getTime()));
-        transaction.setCompteDebiteur(compteDebiteur);
-        transaction.setCompteCrediteur(compteCrediteur);
-        transaction.setMontant(montant);
+        TransactionEntity transactionEntity = new TransactionEntity();
+        transactionEntity.setLibelle(libelle);
+        transactionEntity.setDate(new Timestamp(date.getTime()));
+        transactionEntity.setCompteEntityDebiteur(compteEntityDebiteur);
+        transactionEntity.setCompteEntityCrediteur(compteEntityCrediteur);
+        transactionEntity.setMontant(montant);
 
         //Persist
-        em.persist(transaction);
+        em.persist(transactionEntity);
 
         //Commit
         em.getTransaction().commit();
@@ -39,15 +39,15 @@ public class TransactionDAOImpl implements ITransactionDAO{
     }
 
     @Override
-    public List<Transaction> getTransferListByAccountId(int compteId) {
+    public List<TransactionEntity> getTransferListByAccountId(int compteId) {
         //Create connexion
         EntityManager em =  abstractDAO.newConnexion();
 
         //Requete
-        Query query = em.createQuery("SELECT t FROM Transaction t where t.compteCrediteur = :compteId")
+        Query query = em.createQuery("SELECT t FROM TransactionEntity t where t.compteCrediteur  = :compteId or t.compteCrediteur  = :compteId")
                 .setParameter("compteId", compteId);
 
-        List<Transaction> TransferList  = query.getResultList();
+        List<TransactionEntity> transferList  = query.getResultList();
 
 
         //Commit
@@ -56,7 +56,7 @@ public class TransactionDAOImpl implements ITransactionDAO{
         //Close connexion
         abstractDAO.closeConnexion(em);
 
-        return TransferList;
+        return transferList;
 
 
 
