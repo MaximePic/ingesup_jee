@@ -6,8 +6,10 @@ import maBanque.model.Compte;
 import maBanque.model.Transaction;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 
 public class TransactionDAOImpl implements ITransactionDAO{
     public static IAbstractDAO abstractDAO = new AbstractDAOImpl();
@@ -34,5 +36,30 @@ public class TransactionDAOImpl implements ITransactionDAO{
 
         //Fermeture de la connexion
         abstractDAO.closeConnexion(em);
+    }
+
+    @Override
+    public List<Transaction> getTransferListByAccountId(int compteId) {
+        //Create connexion
+        EntityManager em =  abstractDAO.newConnexion();
+
+        //Requete
+        Query query = em.createQuery("SELECT t FROM Transaction t where t.compteCrediteur = :compteId")
+                .setParameter("compteId", compteId);
+
+        List<Transaction> TransferList  = query.getResultList();
+
+
+        //Commit
+        em.getTransaction().commit();
+
+        //Close connexion
+        abstractDAO.closeConnexion(em);
+
+        return TransferList;
+
+
+
+
     }
 }

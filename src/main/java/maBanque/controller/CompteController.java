@@ -20,6 +20,12 @@ public class CompteController {
     TransactionBean transactionBean = new TransactionBean();
     ITransactionDAO transactionDAO = new TransactionDAOImpl();
 
+
+    /**
+     * Récupère la liste des comptes d'un client
+     * @param clientId id du client
+     * @return
+     */
     public List<Compte> getAccountsByClientId(int clientId){
         List<Compte> accountList = compteDAO.getAccountsByClientId(clientId);
         return accountList;
@@ -70,6 +76,7 @@ public class CompteController {
     }
 
 
+    //****GETTERS AND SETTERS****//
     public ICompteDAO getCompteDAO() {
         return compteDAO;
     }

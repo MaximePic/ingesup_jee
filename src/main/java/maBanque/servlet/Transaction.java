@@ -14,6 +14,8 @@ public class Transaction extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
         request.getRequestDispatcher("/templates/transaction.xhtml").forward(request, response);
     }
 }
