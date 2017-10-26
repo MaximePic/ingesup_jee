@@ -9,22 +9,23 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui" xmlns:c="http://java.sun.com/jsp/jstl/core">
 
-
     <ui:define name="title">Virement</ui:define>
 
     <ui:define name="pageName">Virement</ui:define>
 
     <ui:define name="content">
 
-        <h:form>
-            <h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
+        <h:form id="virement-form">
+            <h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5" id="virment-panel" >
 
                 <!-- Débit -->
                 <p:outputLabel for="debiter" value="Compte à débiter: " />
-                <p:selectOneMenu id="debiter" value="${compteADebiter}">
-                    <c:forEach items="${accountList}" var="compte">
-                        <f:selectItem itemLabel="${compte.libelle}" itemValue="${compte.numero}" />
+                <p:selectOneMenu id="debiter" immediate="true" value="#{compteCtrl.transactionBean.compteDebiteur}">
+                    <c:forEach items="#{accountList}" var="compte">
+                        <f:selectItem itemLabel="#{compte.libelle}" itemValue="#{compte.numero}" />
                     </c:forEach>
+
+                    <p:ajax process="@this" listener="#{compteCtrl.updateCompteDebiteur}"/>
                 </p:selectOneMenu>
 
                 <!-- Montant -->
@@ -32,21 +33,24 @@
                 <p:column>
                     <p:inputNumber id="montant"  symbol=" €" symbolPosition="s"
                                    decimalSeparator="," thousandSeparator="."
-                                   value="${montant}">
+                                   value="${compteCtrl.transactionBean.montant}">
+                        <p:ajax event="change" update="@this" process="@this"/>
                     </p:inputNumber>
                 </p:column>
 
 
                 <!-- Crédit -->
                 <p:outputLabel for="crediter" value="Compte à créditer: " />
-                <p:selectOneMenu id="crediter" value="#{compteACrediter}">
-                    <c:forEach items="${accountList}" var="compte">
-                        <f:selectItem itemLabel="${compte.libelle}" itemValue="${compte.numero}" />
+                <p:selectOneMenu id="crediter" immediate="true" value="#{compteCtrl.transactionBean.compteCrediteur}">
+                    <c:forEach items="#{accountList}" var="compte">
+                        <f:selectItem itemLabel="#{compte.libelle}" itemValue="#{compte.numero}" />
                     </c:forEach>
+                    <p:ajax process="@this" listener="#{compteCtrl.updateCompteCrediteur}"/>
                 </p:selectOneMenu>
             </h:panelGrid>
 
-            <p:commandButton value="Valider" actionListener="#{compteCtrl.lol}"
+            <p:commandButton value="Valider"
+                             actionListener="#{compteCtrl.virement(compteCtrl.transactionBean.compteDebiteur, compteCtrl.transactionBean.compteCrediteur, compteCtrl.transactionBean.montant)}"
                              process="@this" styleClass="ui-priority-primary" />
         </h:form>
     </ui:define>

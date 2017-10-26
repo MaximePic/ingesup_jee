@@ -1,37 +1,26 @@
-package maBanque.model;
+package maBanque.bean;
 
-import javax.persistence.*;
+import maBanque.model.Compte;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import java.util.Date;
 
-@Entity
-public class Transaction {
+@ManagedBean(name = "transactionBean")
+@ViewScoped
+public class TransactionBean {
 
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int transacID;
     private String libelle;
+
     private Date date;
 
+    private int compteDebiteur;
 
-    @ManyToOne
-    private Compte compteDebiteur;
-
-    @ManyToOne
-    private Compte compteCrediteur;
+    private int compteCrediteur;
 
     private double montant;
 
-
     //****GETTERS AND SETTERS****//
-
-    public int getTransacID() {
-        return transacID;
-    }
-
-    public void setTransacID(int transacID) {
-        this.transacID = transacID;
-    }
 
     public String getLibelle() {
         return libelle;
@@ -49,19 +38,19 @@ public class Transaction {
         this.date = date;
     }
 
-    public Compte getCompteDebiteur() {
+    public int getCompteDebiteur() {
         return compteDebiteur;
     }
 
-    public void setCompteDebiteur(Compte compteDebiteur) {
+    public void setCompteDebiteur(int compteDebiteur) {
         this.compteDebiteur = compteDebiteur;
     }
 
-    public Compte getCompteCrediteur() {
+    public int getCompteCrediteur() {
         return compteCrediteur;
     }
 
-    public void setCompteCrediteur(Compte compteCrediteur) {
+    public void setCompteCrediteur(int compteCrediteur) {
         this.compteCrediteur = compteCrediteur;
     }
 
@@ -72,5 +61,4 @@ public class Transaction {
     public void setMontant(double montant) {
         this.montant = montant;
     }
-
 }

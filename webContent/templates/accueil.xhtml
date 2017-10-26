@@ -7,12 +7,20 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui">
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
 
+    <!--<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
+    <fmt:setLocale value="${language}"/>-->
+
+
+   <!-- <fmt:setBundle basename="Message" var="lang"/>-->
 
     <ui:define name="title">Accueil</ui:define>
 
     <ui:define name="pageName">Accueil</ui:define>
+    <!--<fmt:message key="message.accueil" bundle="${lang}"/>-->
+
 
     <ui:define name="content">
         <p:dataTable var="account" value="#{accountList}">

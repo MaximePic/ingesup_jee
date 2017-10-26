@@ -47,9 +47,7 @@ public class CompteDAOImpl extends AbstractDAOImpl implements ICompteDAO {
      */
     @Override
     public void virement(Compte sourceAccount, Compte destinationAccount, double montant) {
-
         debitCompte(sourceAccount, montant);
-
         creditCompte(destinationAccount, montant);
     }
 
@@ -111,5 +109,21 @@ public class CompteDAOImpl extends AbstractDAOImpl implements ICompteDAO {
 
     }
 
+    @Override
+    public Compte getAccountById(int accountId) {
+        //Create connexion
+        EntityManager em = abstractDAO.newConnexion();
+
+      Compte compte = em.find(Compte.class, accountId);
+
+
+        //Commit
+        em.getTransaction().commit();
+
+        //Fermeture de la connexion
+        abstractDAO.closeConnexion(em);
+
+        return compte;
+    }
 
 }

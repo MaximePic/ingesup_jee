@@ -15,7 +15,7 @@ public class Compte {
     private String libelle;
     private double montant;
 
-    @OneToMany(mappedBy= "leCompte", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     @JsonIgnore
     List<Transaction> transactions;
 

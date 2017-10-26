@@ -51,16 +51,21 @@ public class CRUD {
 
     /**
      * Méthode permettant de créer une transaction
-     * @param compte
-     * @return la transaction
+     * @param compteDebiteur
+     * @param compteCrediteur
+     * @param montant
+     * @param libelle
+     * @return
      */
-    public static Transaction createTransaction(Compte compte, String libelle){
+    public static Transaction createTransaction(Compte compteDebiteur,Compte compteCrediteur, double montant, String libelle){
         Date date= new Date();
 
         Transaction transaction = new Transaction();
         transaction.setLibelle(libelle);
         transaction.setDate(new Timestamp(date.getTime()));
-        transaction.setLeCompte(compte);
+        transaction.setCompteDebiteur(compteDebiteur);
+        transaction.setCompteCrediteur(compteCrediteur);
+        transaction.setMontant(montant);
         return transaction;
     }
 }

@@ -12,4 +12,6 @@ public interface ICompteDAO {
     void debitCompte(Compte compte, double montant);
 
     void creditCompte(Compte compte, double montant);
+
+    Compte getAccountById(int accountId);
 }

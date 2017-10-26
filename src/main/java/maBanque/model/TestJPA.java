@@ -31,19 +31,20 @@ public class TestJPA {
 
             //Create Compte
             Compte compte1 = createAccount(client, "Livret A", 1000.00);
-            Compte compte2 = createAccount(client2, "Livret A", 10000.00);
+            Compte compte2 = createAccount(client, "Compte d'épargne", 10000.00);
 
             //Create liste de compte
             createClientAccountList(compte1, client);
-            createClientAccountList(compte2, client2);
+            createClientAccountList(compte2, client);
 
             //Create transaction
-            Transaction transaction = createTransaction(compte1, "Transaction 1");
+            Transaction transaction = createTransaction(compte1, compte2, 1000.00, "Salaire");
 
             //Persistence
             em.persist(client);
             em.persist(client2);
             em.persist(compte1);
+            em.persist(compte2);
             em.persist(transaction);
 
             //Commit
@@ -55,25 +56,6 @@ public class TestJPA {
             TypedQuery<Client> tQuery = em.createQuery("from Client", Client.class);
             List<Client> clientList = tQuery.getResultList();
 
-            for (Client c : clientList) {
-                logger.info(c.toString());
-                logger.debug("is client loaded ? " + util.isLoaded(c));
-                logger.debug("Are account loaded ? " + util.isLoaded(c.getComptes()));
-                Compte co = c.getComptes().get(0);
-                logger.debug("are transactions loaded ? " + util.isLoaded(co, "transcations"));
-                co.getTransactions();
-                logger.debug("are transactions loaded now ? " + util.isLoaded(co, "transactions"));
-
-                if(co.getTransactions() != null){
-                    for (Transaction tran : co.getTransactions()) {
-                        logger.info(tran.toString());
-                    }
-                }else{
-                    logger.info("Compte sans transaction");
-                }
-
-            }
-            logger.info("Size " + clientList.size());
 
         } catch (Exception e) {
             e.printStackTrace();
