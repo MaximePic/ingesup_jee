@@ -15,21 +15,21 @@
 
     <ui:define name="content">
 
-        <h:form>
+        <form id="login-form" method="post" action="/login">
             <p:messages id="messages" />
             <p:panelGrid columns="2">
-                <p:outputLabel for="username" value="Login:" />
-                <p:inputText id="username" />
+                <input name="login" id="login"/>
 
-                <p:outputLabel for="password" value="Password:" />
-                <p:password id="password" />
+                <input type="password" id="password" name="password" />
 
-                <p:commandButton value="Envoyer" icon="ui-icon-star"
-                                  ajax="false">
-                </p:commandButton>
+                <p:commandButton value="Login" id="loginButton" icon="ui-icon-star"
+                                 type="submit"/>
 
             </p:panelGrid>
-        </h:form>
+
+
+        </form>
+
 
     </ui:define>
 </ui:composition>
