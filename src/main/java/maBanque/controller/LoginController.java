@@ -2,6 +2,7 @@ package maBanque.controller;
 
 import maBanque.dao.ILoginDAO;
 import maBanque.dao.impl.LoginDAOImpl;
+import maBanque.model.Client;
 
 public class LoginController {
     ILoginDAO loginDAO = new LoginDAOImpl();
@@ -13,8 +14,8 @@ public class LoginController {
      * @param password
      * @return
      */
-    public int findClientByCred(String login, String password){
-        int clientId = loginDAO.findClientByCred(login, password);
-        return clientId;
+    public Client findClientByCred(String login, String password){
+        Client client = loginDAO.findClientByCred(login, password);
+        return client;
     }
 }

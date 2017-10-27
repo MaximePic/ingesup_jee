@@ -1,6 +1,10 @@
 package maBanque.dao;
 
 
+import maBanque.model.Client;
+
 public interface ILoginDAO {
-    int findClientByCred(String login, String password);
+    Client findClientByCred(String login, String password);
+
+
 }

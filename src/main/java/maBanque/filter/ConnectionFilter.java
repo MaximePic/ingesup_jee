@@ -24,7 +24,7 @@ public class ConnectionFilter implements Filter {
 
         HttpSession session = req.getSession(false);
 
-        boolean loggedIn = session != null && session.getAttribute("client") != null;
+        boolean loggedIn = session != null && session.getAttribute("clientId") != null;
         boolean loginRequest = req.getRequestURI().equals(loginURI);
         boolean staticResource = req.getRequestURI().matches(".*[css|jpg|png|gif|js].*");
         System.out.println(req.getRequestURI());

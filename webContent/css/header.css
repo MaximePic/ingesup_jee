@@ -4,3 +4,11 @@
     display: table;
     width:100%;
 }
+
+.client-id{
+    position: absolute;
+    color: #FFFFFF;
+    font-family: 'Libre Franklin', sans-serif;
+    font-weight: 300;
+    margin:10px 10px;
+}

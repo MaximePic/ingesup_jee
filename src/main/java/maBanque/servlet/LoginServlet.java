@@ -1,6 +1,7 @@
 package maBanque.servlet;
 
 import maBanque.controller.LoginController;
+import maBanque.model.Client;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,20 +22,24 @@ public class LoginServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int userConnectedId = 0;
+        Client userConnected = null;
 
         //Find user by login and pswd
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 
         if(login != null && password!= null){
-            userConnectedId = loginController.findClientByCred(login, password);
+            userConnected = loginController.findClientByCred(login, password);
+            userConnectedId = userConnected.getClientID();
         }
 
         //Si les identifiants sont bon
         if(userConnectedId != 0){
             //On créer une session et on set les id de l'utilisateur
             HttpSession session = request.getSession();
-            session.setAttribute("client", userConnectedId);
+            session.setAttribute("clientId", userConnectedId);
+            session.setAttribute("clientNom", userConnected.getNom());
+            session.setAttribute("clientPrenom", userConnected.getPrenom());
 
             //On redirige vers page d'accueil
             response.sendRedirect(request.getContextPath() + ServletHelper.SERVLET_ACCOUNT);
@@ -47,4 +52,5 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/templates/login.xhtml").forward(request, response);
     }
+
 }

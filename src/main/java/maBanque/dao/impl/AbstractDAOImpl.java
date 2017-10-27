@@ -2,8 +2,14 @@ package maBanque.dao.impl;
 
 
 import maBanque.dao.IAbstractDAO;
+import maBanque.servlet.ServletHelper;
 
+import javax.faces.context.FacesContext;
 import javax.persistence.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
 
 import static maBanque.constants.Constants.PERSISTENCE_UNIT_NAME;
 
@@ -58,6 +64,22 @@ public class AbstractDAOImpl implements IAbstractDAO {
             factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
         }
         return factory;
+    }
+
+    /**
+     * Logout
+     * @param request
+     * @param response
+     */
+    @Override
+    public void logout( HttpServletRequest request, HttpServletResponse response){
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        try {
+            response.sendRedirect(request.getContextPath() + ServletHelper.SERVLET_LOGIN);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 

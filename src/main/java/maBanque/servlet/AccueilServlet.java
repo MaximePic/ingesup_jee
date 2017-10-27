@@ -24,9 +24,15 @@ public class AccueilServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        Object client = session.getAttribute("client");
-        List<Compte> accountList = compteCtrl.getAccountsByClientId(1);
+        int clientId = (int) session.getAttribute("clientId");
+        String clientNom = (String) session.getAttribute("clientNom");
+        String clientPrenom = (String) session.getAttribute("clientPrenom");
 
+        request.setAttribute("clientNom", clientNom);
+        request.setAttribute("clientPrenom", clientPrenom);
+
+        //Liste des comptes du client
+        List<Compte> accountList = compteCtrl.getAccountsByClientId(clientId);
         request.setAttribute("accountList", accountList);
         request.getRequestDispatcher("/templates/accueil.xhtml").forward(request, response);
     }

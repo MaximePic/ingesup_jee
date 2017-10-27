@@ -2,6 +2,7 @@ package maBanque.dao.impl;
 
 import maBanque.dao.IAbstractDAO;
 import maBanque.dao.ILoginDAO;
+import maBanque.model.Client;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -9,13 +10,13 @@ import javax.persistence.Query;
 public class LoginDAOImpl implements ILoginDAO{
     IAbstractDAO abstractDAO = new AbstractDAOImpl();
     @Override
-    public int findClientByCred(String login, String password) {
+    public Client findClientByCred(String login, String password) {
 
         //Create connexion
         EntityManager em =  abstractDAO.newConnexion();
 
         //Requete
-        Query query = em.createQuery("SELECT c.clientID" +
+        Query query = em.createQuery("SELECT c" +
                 " FROM Client c " +
                 "WHERE c.login=:login" +
                 " AND c.password=:password")
@@ -23,7 +24,7 @@ public class LoginDAOImpl implements ILoginDAO{
                 .setParameter("password", password);
 
 
-        int clientId = (int) query.getSingleResult();
+        Client client= (Client) query.getSingleResult();
 
         //Commit
         em.getTransaction().commit();
@@ -31,7 +32,7 @@ public class LoginDAOImpl implements ILoginDAO{
         //Close connexion
         abstractDAO.closeConnexion(em);
 
-        return clientId;
+        return client;
 
     }
 }

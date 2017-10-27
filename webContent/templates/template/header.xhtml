@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+<html xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:body>
     <div class="header-wrap">
+        <span class="client-id">
+            <ui:insert name="client" />
+        </span>
+        <span>
+           <!-- <form action="/login" method="post" >
+              <input type="submit" value="Se déconnecter"/>
+            </form>-->
+
+        </span>
+
         <h1>
             <ui:insert name="pageName"/>
         </h1>
