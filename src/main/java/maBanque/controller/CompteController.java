@@ -5,7 +5,7 @@ import maBanque.dao.ICompteDAO;
 import maBanque.dao.ITransactionDAO;
 import maBanque.dao.impl.CompteDAOImpl;
 import maBanque.dao.impl.TransactionDAOImpl;
-import maBanque.model.CompteEntity;
+import maBanque.model.Compte;
 import org.primefaces.component.selectonemenu.SelectOneMenu;
 
 import javax.faces.bean.ManagedBean;
@@ -26,8 +26,8 @@ public class CompteController {
      * @param clientId id du client
      * @return
      */
-    public List<CompteEntity> getAccountsByClientId(int clientId){
-        List<CompteEntity> accountList = compteDAO.getAccountsByClientId(clientId);
+    public List<Compte> getAccountsByClientId(int clientId){
+        List<Compte> accountList = compteDAO.getAccountsByClientId(clientId);
         return accountList;
     }
 
@@ -39,8 +39,8 @@ public class CompteController {
      * @param montant montant de la transaction
      */
     public void virement(String libelle, int sourceAccountNum, int destinationAccountNum, double montant){
-        CompteEntity sourceAccount = compteDAO.getAccountById(sourceAccountNum);
-        CompteEntity destinationAccount = compteDAO.getAccountById(destinationAccountNum);
+        Compte sourceAccount = compteDAO.getAccountById(sourceAccountNum);
+        Compte destinationAccount = compteDAO.getAccountById(destinationAccountNum);
         compteDAO.virement(sourceAccount, destinationAccount, montant);
 
         createTransaction(libelle, montant, sourceAccount, destinationAccount);
@@ -71,8 +71,8 @@ public class CompteController {
     }
 
 
-    public void createTransaction(String libelle, double montant, CompteEntity compteEntityDebiteur, CompteEntity compteEntityCrediteur){
-        transactionDAO.createTransaction(libelle, montant, compteEntityDebiteur, compteEntityCrediteur);
+    public void createTransaction(String libelle, double montant, Compte compteDebiteur, Compte compteCrediteur){
+        transactionDAO.createTransaction(libelle, montant, compteDebiteur, compteCrediteur);
     }
 
 

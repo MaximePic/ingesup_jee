@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class CompteEntity {
+public class Compte {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,11 +16,11 @@ public class CompteEntity {
 
     @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     @JsonIgnore
-    List<TransactionEntity> transactionEntities;
+    List<Transaction> transactionEntities;
 
     @ManyToOne
     @JoinColumn(name="clientID")
-    private ClientEntity clientEntity;
+    private Client client;
 
 
     //****GETTERS AND SETTERS****//
@@ -40,20 +40,20 @@ public class CompteEntity {
         this.libelle = libelle;
     }
 
-    public List<TransactionEntity> getTransactionEntities() {
+    public List<Transaction> getTransactionEntities() {
         return transactionEntities;
     }
 
-    public void setTransactionEntities(List<TransactionEntity> transactionEntities) {
+    public void setTransactionEntities(List<Transaction> transactionEntities) {
         this.transactionEntities = transactionEntities;
     }
 
-    public ClientEntity getClientEntity() {
-        return clientEntity;
+    public Client getClient() {
+        return client;
     }
 
-    public void setClientEntity(ClientEntity clientEntity) {
-        this.clientEntity = clientEntity;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public double getMontant() {

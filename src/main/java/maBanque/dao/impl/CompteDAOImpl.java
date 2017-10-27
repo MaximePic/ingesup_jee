@@ -2,7 +2,7 @@ package maBanque.dao.impl;
 
 import maBanque.dao.IAbstractDAO;
 import maBanque.dao.ICompteDAO;
-import maBanque.model.CompteEntity;
+import maBanque.model.Compte;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -18,16 +18,16 @@ public class CompteDAOImpl extends AbstractDAOImpl implements ICompteDAO {
      * @return
      */
     @Override
-    public List<CompteEntity> getAccountsByClientId(int clientId) {
+    public List<Compte> getAccountsByClientId(int clientId) {
 
         //Create connexion
         EntityManager em =  abstractDAO.newConnexion();
 
         //Requete
-        Query query = em.createQuery("SELECT c FROM CompteEntity c where c.clientEntity.clientID = :clientId")
+        Query query = em.createQuery("SELECT c FROM Compte c where c.client.clientID = :clientId")
                 .setParameter("clientId", clientId);
 
-        List<CompteEntity> accountList  = query.getResultList();
+        List<Compte> accountList  = query.getResultList();
 
 
         //Commit
@@ -46,27 +46,27 @@ public class CompteDAOImpl extends AbstractDAOImpl implements ICompteDAO {
      * @param montant montant de la transaction
      */
     @Override
-    public void virement(CompteEntity sourceAccount, CompteEntity destinationAccount, double montant) {
+    public void virement(Compte sourceAccount, Compte destinationAccount, double montant) {
         debitCompte(sourceAccount, montant);
         creditCompte(destinationAccount, montant);
     }
 
     /**
-     * Méthode permettant de débiter un compteEntity
-     * @param compteEntity
+     * Méthode permettant de débiter un compte
+     * @param compte
      * @param montant
      */
     @Override
-    public void debitCompte(CompteEntity compteEntity, double montant){
+    public void debitCompte(Compte compte, double montant){
 
-        //Numéro de compteEntity à débiter
-        int compteSource = compteEntity.getNumero();
+        //Numéro de compte à débiter
+        int compteSource = compte.getNumero();
 
         //Create connexion
         EntityManager em =  abstractDAO.newConnexion();
 
-        //Requete de débit du compteEntity
-        Query query = em.createQuery("UPDATE CompteEntity c SET c.montant= c.montant-:somme where numero = :compteSource")
+        //Requete de débit du compte
+        Query query = em.createQuery("UPDATE Compte c SET c.montant= c.montant-:somme where numero = :compteSource")
                 .setParameter("somme", montant)
                 .setParameter("compteSource", compteSource);
 
@@ -80,21 +80,21 @@ public class CompteDAOImpl extends AbstractDAOImpl implements ICompteDAO {
     }
 
     /**
-     * Méthode permettant de crediter un compteEntity
-     * @param compteEntity
+     * Méthode permettant de crediter un compte
+     * @param compte
      * @param montant
      */
     @Override
-    public void creditCompte(CompteEntity compteEntity, double montant){
+    public void creditCompte(Compte compte, double montant){
 
-        //Numéro de compteEntity à créditer
-        int compteDestinataire = compteEntity.getNumero();
+        //Numéro de compte à créditer
+        int compteDestinataire = compte.getNumero();
 
         //Create connexion
         EntityManager em =  abstractDAO.newConnexion();
 
-        //Requete de débit du compteEntity
-        Query query = em.createQuery("UPDATE CompteEntity c SET c.montant= c.montant+:somme where numero = :compteDestinataire")
+        //Requete de débit du compte
+        Query query = em.createQuery("UPDATE Compte c SET c.montant= c.montant+:somme where numero = :compteDestinataire")
                 .setParameter("somme", montant)
                 .setParameter("compteDestinataire", compteDestinataire);
 
@@ -110,11 +110,11 @@ public class CompteDAOImpl extends AbstractDAOImpl implements ICompteDAO {
     }
 
     @Override
-    public CompteEntity getAccountById(int accountId) {
+    public Compte getAccountById(int accountId) {
         //Create connexion
         EntityManager em = abstractDAO.newConnexion();
 
-      CompteEntity compteEntity = em.find(CompteEntity.class, accountId);
+      Compte compte = em.find(Compte.class, accountId);
 
 
         //Commit
@@ -123,7 +123,7 @@ public class CompteDAOImpl extends AbstractDAOImpl implements ICompteDAO {
         //Fermeture de la connexion
         abstractDAO.closeConnexion(em);
 
-        return compteEntity;
+        return compte;
     }
 
 }

@@ -1,7 +1,7 @@
 package maBanque.servlet;
 
 import maBanque.controller.CompteController;
-import maBanque.model.CompteEntity;
+import maBanque.model.Compte;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,7 +22,7 @@ public class AccueilServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        List<CompteEntity> accountList = compteCtrl.getAccountsByClientId(1);
+        List<Compte> accountList = compteCtrl.getAccountsByClientId(1);
 
         request.setAttribute("accountList", accountList);
         request.getRequestDispatcher("/templates/accueil.xhtml").forward(request, response);

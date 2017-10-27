@@ -1,12 +1,12 @@
 package maBanque.dao;
 
-import maBanque.model.CompteEntity;
-import maBanque.model.TransactionEntity;
+import maBanque.model.Compte;
+import maBanque.model.Transaction;
 
 import java.util.List;
 
 public interface ITransactionDAO {
-    void createTransaction(String libelle, double montant, CompteEntity compteEntityDebiteurNum, CompteEntity compteEntityCrediteurNum);
+    void createTransaction(String libelle, double montant, Compte compteDebiteurNum, Compte compteCrediteurNum);
 
-    List<TransactionEntity> getTransferListByAccountId(int compteId);
+    List<Transaction> getTransferListByAccountId(int compteId);
 }

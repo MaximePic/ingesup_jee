@@ -2,11 +2,9 @@ package maBanque.dao.impl;
 
 import maBanque.dao.IAbstractDAO;
 import maBanque.dao.ILoginDAO;
-import maBanque.model.ClientEntity;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import java.util.List;
 
 public class LoginDAOImpl implements ILoginDAO{
     IAbstractDAO abstractDAO = new AbstractDAOImpl();
@@ -18,7 +16,7 @@ public class LoginDAOImpl implements ILoginDAO{
 
         //Requete
         Query query = em.createQuery("SELECT c.clientID" +
-                " FROM ClientEntity c " +
+                " FROM Client c " +
                 "WHERE c.login=:login" +
                 " AND c.password=:password")
                 .setParameter("login", login)

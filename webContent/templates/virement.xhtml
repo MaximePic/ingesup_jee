@@ -20,16 +20,16 @@
 
                 <!-- Débit -->
                 <p:outputLabel for="debiter" value="Compte à débiter: " />
-                <p:selectOneMenu id="debiter" immediate="true" value="#{compteCtrl.transactionBean.compteEntityDebiteur}">
-                    <c:forEach items="#{accountList}" var="compteEntity">
-                        <f:selectItem itemLabel="#{compteEntity.libelle}" itemValue="#{compteEntity.numero}" />
+                <p:selectOneMenu id="debiter" immediate="true" value="#{compteCtrl.transactionBean.compteDebiteur}">
+                    <c:forEach items="#{accountList}" var="compte">
+                        <f:selectItem itemLabel="#{compte.libelle}" itemValue="#{compte.numero}" />
                     </c:forEach>
 
                     <p:ajax process="@this" listener="#{compteCtrl.updateCompteDebiteur}"/>
                 </p:selectOneMenu>
 
                 <!-- Montant -->
-                <p:outputLabel for="montant" value="Montant de la transactionEntity: " />
+                <p:outputLabel for="montant" value="Montant de la transaction: " />
                 <p:column>
                     <p:inputNumber id="montant"  symbol=" €" symbolPosition="s"
                                    decimalSeparator="," thousandSeparator="."
@@ -41,9 +41,9 @@
 
                 <!-- Crédit -->
                 <p:outputLabel for="crediter" value="Compte à créditer: " />
-                <p:selectOneMenu id="crediter" immediate="true" value="#{compteCtrl.transactionBean.compteEntityCrediteur}">
-                    <c:forEach items="#{accountList}" var="compteEntity">
-                        <f:selectItem itemLabel="#{compteEntity.libelle}" itemValue="#{compteEntity.numero}" />
+                <p:selectOneMenu id="crediter" immediate="true" value="#{compteCtrl.transactionBean.compteCrediteur}">
+                    <c:forEach items="#{accountList}" var="compte">
+                        <f:selectItem itemLabel="#{compte.libelle}" itemValue="#{compte.numero}" />
                     </c:forEach>
                     <p:ajax process="@this" listener="#{compteCtrl.updateCompteCrediteur}"/>
                 </p:selectOneMenu>
@@ -59,8 +59,8 @@
             <p:commandButton value="Valider"
                              actionListener="#{compteCtrl.virement(
                              compteCtrl.transactionBean.libelle,
-                             compteCtrl.transactionBean.compteEntityDebiteur,
-                             compteCtrl.transactionBean.compteEntityCrediteur,
+                             compteCtrl.transactionBean.compteDebiteur,
+                             compteCtrl.transactionBean.compteCrediteur,
                              compteCtrl.transactionBean.montant)}"
 
                              process="@this" styleClass="ui-priority-primary" />

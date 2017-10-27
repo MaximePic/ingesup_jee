@@ -1,7 +1,6 @@
 package maBanque.servlet;
 
 import maBanque.controller.LoginController;
-import maBanque.model.ClientEntity;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

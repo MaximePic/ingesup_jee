@@ -2,10 +2,10 @@
 
 ## Projet d’application bancaire
 
-Créer une application clientEntity/serveur simulant la gestion de compteEntities bancaires, avec les possibilités suivantes offertes à l’utilisateur :
+Créer une application client/serveur simulant la gestion de compteEntities bancaires, avec les possibilités suivantes offertes à l’utilisateur :
 -	Connexion à l’application par login/mot de passe
 -	Liste des compteEntities
--	Listes des transactionEntities par compteEntity
+-	Listes des transactionEntities par compte
 -	Virement entre les compteEntities
 -	Déconnexion
 

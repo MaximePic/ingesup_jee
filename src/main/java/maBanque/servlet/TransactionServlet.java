@@ -1,7 +1,7 @@
 package maBanque.servlet;
 
 import maBanque.controller.TransactionController;
-import maBanque.model.TransactionEntity;
+import maBanque.model.Transaction;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,7 +20,7 @@ public class TransactionServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        List<TransactionEntity> transferList = transactionCtrl.getTransferListByAccountId(1);
+        List<Transaction> transferList = transactionCtrl.getTransferListByAccountId(1);
 
         request.setAttribute("transferList", transferList);
 

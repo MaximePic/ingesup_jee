@@ -2,7 +2,6 @@ package maBanque.controller;
 
 import maBanque.dao.ILoginDAO;
 import maBanque.dao.impl.LoginDAOImpl;
-import maBanque.model.ClientEntity;
 
 public class LoginController {
     ILoginDAO loginDAO = new LoginDAOImpl();

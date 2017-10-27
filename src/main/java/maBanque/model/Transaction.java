@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class TransactionEntity {
+public class Transaction {
 
 
     @Id
@@ -15,10 +15,10 @@ public class TransactionEntity {
 
 
     @ManyToOne
-    private CompteEntity compteEntityDebiteur;
+    private Compte compteDebiteur;
 
     @ManyToOne
-    private CompteEntity compteEntityCrediteur;
+    private Compte compteCrediteur;
 
     private double montant;
 
@@ -49,20 +49,20 @@ public class TransactionEntity {
         this.date = date;
     }
 
-    public CompteEntity getCompteEntityDebiteur() {
-        return compteEntityDebiteur;
+    public Compte getCompteDebiteur() {
+        return compteDebiteur;
     }
 
-    public void setCompteEntityDebiteur(CompteEntity compteEntityDebiteur) {
-        this.compteEntityDebiteur = compteEntityDebiteur;
+    public void setCompteDebiteur(Compte compteDebiteur) {
+        this.compteDebiteur = compteDebiteur;
     }
 
-    public CompteEntity getCompteEntityCrediteur() {
-        return compteEntityCrediteur;
+    public Compte getCompteCrediteur() {
+        return compteCrediteur;
     }
 
-    public void setCompteEntityCrediteur(CompteEntity compteEntityCrediteur) {
-        this.compteEntityCrediteur = compteEntityCrediteur;
+    public void setCompteCrediteur(Compte compteCrediteur) {
+        this.compteCrediteur = compteCrediteur;
     }
 
     public double getMontant() {

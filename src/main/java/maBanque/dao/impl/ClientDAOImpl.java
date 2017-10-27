@@ -4,8 +4,8 @@ public class ClientDAOImpl extends AbstractDAOImpl {
 
     public static AbstractDAOImpl abstractDAOImpl = new AbstractDAOImpl();
 
- /*   public ClientEntity loadClientById(int clientID) {
-        ClientEntity result = new ClientEntity();
+ /*   public Client loadClientById(int clientID) {
+        Client result = new Client();
         Connection con = abstractDAOImpl.JDBCConnection();
 
         try {
@@ -31,8 +31,8 @@ public class ClientDAOImpl extends AbstractDAOImpl {
         return result;
     }
 
-    public static ClientEntity insertClient(String nom, String prenom, String login, String password) {
-        ClientEntity result = new ClientEntity();
+    public static Client insertClient(String nom, String prenom, String login, String password) {
+        Client result = new Client();
 
         try {
             Connection con = abstractDAOImpl.JDBCConnection();
@@ -55,9 +55,9 @@ public class ClientDAOImpl extends AbstractDAOImpl {
         return result;
     }
 
-    public ClientEntity deleteClientById(int clientID) {
+    public Client deleteClientById(int clientID) {
         Connection con = abstractDAOImpl.JDBCConnection();
-        ClientEntity result = new ClientEntity();
+        Client result = new Client();
 
         try {
 

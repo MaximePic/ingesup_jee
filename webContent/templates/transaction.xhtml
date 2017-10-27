@@ -16,11 +16,11 @@
 
     <ui:define name="content">
         <p:dataTable var="account" value="#{accountList}">
-            <p:column headerText="Numéro de compteEntity">
+            <p:column headerText="Numéro de compte">
                 <h:outputText value="#{account.numero}"/>
             </p:column>
 
-            <p:column headerText="Nom du compteEntity">
+            <p:column headerText="Nom du compte">
                 <h:outputText value="#{account.libelle}"/>
             </p:column>
             <p:column headerText="Montant">

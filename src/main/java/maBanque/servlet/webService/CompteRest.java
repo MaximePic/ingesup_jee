@@ -2,7 +2,7 @@ package maBanque.servlet.webService;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import maBanque.controller.CompteController;
-import maBanque.model.CompteEntity;
+import maBanque.model.Compte;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,7 +26,7 @@ public class CompteRest extends HttpServlet {
         int clientId = Integer.parseInt(idStr);
 
         CompteController compteCtrl = new CompteController();
-        List<CompteEntity> listCompteEntities = compteCtrl.getAccountsByClientId(clientId);
+        List<Compte> listCompteEntities = compteCtrl.getAccountsByClientId(clientId);
 
 
         ObjectMapper mapper = new ObjectMapper();
