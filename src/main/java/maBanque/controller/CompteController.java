@@ -8,8 +8,10 @@ import maBanque.dao.impl.TransactionDAOImpl;
 import maBanque.model.Compte;
 import org.primefaces.component.selectonemenu.SelectOneMenu;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 import java.util.List;
 
@@ -19,6 +21,9 @@ public class CompteController {
     ICompteDAO compteDAO = new CompteDAOImpl();
     TransactionBean transactionBean = new TransactionBean();
     ITransactionDAO transactionDAO = new TransactionDAOImpl();
+
+    //Message popup apres virement
+    private String message;
 
 
     /**
@@ -44,6 +49,8 @@ public class CompteController {
         compteDAO.virement(sourceAccount, destinationAccount, montant);
 
         createTransaction(libelle, montant, sourceAccount, destinationAccount);
+
+        saveMessage();
     }
 
     /**
@@ -75,6 +82,12 @@ public class CompteController {
         transactionDAO.createTransaction(libelle, montant, compteDebiteur, compteCrediteur);
     }
 
+    public void saveMessage() {
+        FacesContext context = FacesContext.getCurrentInstance();
+
+        context.addMessage(null, new FacesMessage("Successful",  "Le virment a bien été effectué") );
+    }
+
 
     //****GETTERS AND SETTERS****//
     public ICompteDAO getCompteDAO() {
@@ -91,5 +104,13 @@ public class CompteController {
 
     public void setTransactionBean(TransactionBean transactionBean) {
         this.transactionBean = transactionBean;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

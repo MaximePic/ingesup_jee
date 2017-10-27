@@ -63,7 +63,9 @@
                              compteCtrl.transactionBean.compteCrediteur,
                              compteCtrl.transactionBean.montant)}"
 
-                             process="@this" styleClass="ui-priority-primary" />
+                             process="@this" update="growl"  styleClass="ui-priority-primary" />
+
+            <p:growl id="growl" showDetail="true" sticky="true" />
         </h:form>
     </ui:define>
 </ui:composition>

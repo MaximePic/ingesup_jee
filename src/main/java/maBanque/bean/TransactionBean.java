@@ -18,6 +18,9 @@ public class TransactionBean {
 
     private double montant;
 
+
+
+
     //****GETTERS AND SETTERS****//
 
     public String getLibelle() {

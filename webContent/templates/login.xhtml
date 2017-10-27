@@ -13,14 +13,23 @@
 
     <ui:define name="content">
 
-        <form id="login-form" method="post" action="/login">
-            <p:messages id="messages" />
+
+
+<!--        <form id="login-form" method="post" action="/login">>
             <p:panelGrid columns="2">
                 <input name="login" id="login"/>
                 <input type="password" id="password" name="password" />
                 <button value="Login" id="loginButton"/>
             </p:panelGrid>
-        </form>
+        </form>-->
+
+        <div class="form">
+            <form id="login-form" action="/login" method="post">
+                <input class="login-input" name="login" id="login" placeholder="Login"/>
+                <input class="login-input" type="password" id="password" name="password"/>
+                <input type="submit" value="Login" />
+            </form>
+        </div>
 
 
     </ui:define>
