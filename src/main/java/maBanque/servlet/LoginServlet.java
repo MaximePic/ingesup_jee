@@ -21,24 +21,24 @@ public class LoginServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ClientEntity userConnected = null;
+        int userConnectedId = 0;
 
         //Find user by login and pswd
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 
         if(login != null && password!= null){
-            userConnected = loginController.findClientByCred(login, password);
+            userConnectedId = loginController.findClientByCred(login, password);
         }
 
-
         //Si les identifiants sont bon
-        if(userConnected != null){
+        if(userConnectedId != 0){
             //On créer une session et on set les id de l'utilisateur
             HttpSession session = request.getSession();
-            session.setAttribute("client", userConnected.getClientID());
+            session.setAttribute("client", userConnectedId);
 
-            request.getRequestDispatcher("/templates/accueil.xhtml").forward(request, response);
+            //On redirige vers page d'accueil
+            response.sendRedirect(request.getContextPath() + ServletHelper.SERVLET_ACCOUNT);
         }
 
 

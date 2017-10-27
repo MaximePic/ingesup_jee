@@ -11,6 +11,6 @@ public class ServletHelper {
 
 
     public static String getServletUrl(String servlet, HttpServletRequest request){
-        return request.getContextPath()+servlet;
+        return request.getContextPath()+ servlet;
     }
 }

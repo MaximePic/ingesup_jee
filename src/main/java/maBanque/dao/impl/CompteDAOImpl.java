@@ -24,7 +24,7 @@ public class CompteDAOImpl extends AbstractDAOImpl implements ICompteDAO {
         EntityManager em =  abstractDAO.newConnexion();
 
         //Requete
-        Query query = em.createQuery("SELECT c FROM CompteEntity c where c.client.clientID = :clientId")
+        Query query = em.createQuery("SELECT c FROM CompteEntity c where c.clientEntity.clientID = :clientId")
                 .setParameter("clientId", clientId);
 
         List<CompteEntity> accountList  = query.getResultList();

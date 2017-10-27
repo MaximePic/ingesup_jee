@@ -9,13 +9,13 @@ public class LoginController {
 
 
     /**
-     * Méthode permettant de ramener un objet client en fonction des ses identifiants
+     * Méthode permettant de ramener un id client en fonction des ses identifiants
      * @param login
      * @param password
      * @return
      */
-    public ClientEntity findClientByCred(String login, String password){
-        ClientEntity client = loginDAO.findClientByCred(login, password);
-        return client;
+    public int findClientByCred(String login, String password){
+        int clientId = loginDAO.findClientByCred(login, password);
+        return clientId;
     }
 }

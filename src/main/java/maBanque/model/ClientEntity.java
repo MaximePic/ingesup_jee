@@ -17,7 +17,7 @@ public class ClientEntity {
     private String login;
 
 
-    @OneToMany(mappedBy="client", cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy="clientEntity", cascade=CascadeType.ALL, fetch = FetchType.EAGER)
     @JsonIgnore
     private List<CompteEntity> compteEntities;
 
