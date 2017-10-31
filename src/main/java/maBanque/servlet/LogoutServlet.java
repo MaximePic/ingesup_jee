@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet("/logout")
-public class Logout extends HttpServlet {
+public class LogoutServlet extends HttpServlet {
     IAbstractDAO abstractDAO = new AbstractDAOImpl();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         abstractDAO.logout(request, response);

@@ -40,6 +40,7 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("clientId", userConnectedId);
             session.setAttribute("clientNom", userConnected.getNom());
             session.setAttribute("clientPrenom", userConnected.getPrenom());
+            session.setAttribute("connected", true);
 
             //On redirige vers page d'accueil
             response.sendRedirect(request.getContextPath() + ServletHelper.SERVLET_ACCOUNT);
@@ -50,6 +51,7 @@ public class LoginServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("connected", false);
         request.getRequestDispatcher("/templates/login.xhtml").forward(request, response);
     }
 

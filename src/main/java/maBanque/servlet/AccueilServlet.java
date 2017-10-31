@@ -28,11 +28,12 @@ public class AccueilServlet extends HttpServlet {
         String clientNom = (String) session.getAttribute("clientNom");
         String clientPrenom = (String) session.getAttribute("clientPrenom");
 
-        request.setAttribute("clientNom", clientNom);
-        request.setAttribute("clientPrenom", clientPrenom);
+        session.setAttribute("clientNom", clientNom);
+        session.setAttribute("clientPrenom", clientPrenom);
 
         //Liste des comptes du client
         List<Compte> accountList = compteCtrl.getAccountsByClientId(clientId);
+        request.setAttribute("connected", true);
         request.setAttribute("accountList", accountList);
         request.getRequestDispatcher("/templates/accueil.xhtml").forward(request, response);
     }

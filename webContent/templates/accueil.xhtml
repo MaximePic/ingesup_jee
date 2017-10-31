@@ -20,10 +20,6 @@
 
     <ui:define name="pageName">Accueil</ui:define>
 
-    <ui:define name="client">Bienvenue, <b>#{clientNom} #{clientPrenom}</b> </ui:define>
-
-
-
     <!--<fmt:message key="message.accueil" bundle="${lang}"/>-->
 
 
@@ -38,6 +34,11 @@
             </p:column>
             <p:column headerText="Montant">
                 <h:outputText value="#{account.montant}"/>
+            </p:column>
+            <p:column>
+                <form action="/transactions/#{account.numero}">
+                    <input type="submit" value="Consulter" />
+                </form>
             </p:column>
         </p:dataTable>
     </ui:define>

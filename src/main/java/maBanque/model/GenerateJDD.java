@@ -10,9 +10,9 @@ import java.util.List;
 import static maBanque.constants.Constants.PERSISTENCE_UNIT_NAME;
 import static maBanque.model.CRUD.*;
 
-public class TestJPA {
+public class GenerateJDD {
     private static EntityManagerFactory factory;
-    private static Logger logger = LogManager.getLogger(TestJPA.class);
+    private static Logger logger = LogManager.getLogger(GenerateJDD.class);
 
     public static void main(String[] args) {
         //Define variables
@@ -39,6 +39,8 @@ public class TestJPA {
 
             //Create transaction
             Transaction transaction = createTransaction(compte1, compte2, 1000.00, "Salaire");
+            //Create transaction
+            Transaction transaction2 = createTransaction(compte2, compte1, 50.00, "Cantine");
 
             //Persistence
             em.persist(client);
@@ -46,6 +48,7 @@ public class TestJPA {
             em.persist(compte1);
             em.persist(compte2);
             em.persist(transaction);
+            em.persist(transaction2);
 
             //Commit
             em.getTransaction().commit();

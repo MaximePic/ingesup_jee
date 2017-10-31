@@ -21,6 +21,7 @@ public class Virement extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("connected", true);
         List<Compte> accountList = compteCtrl.getAccountsByClientId(1);
 
         request.setAttribute("accountList", accountList);

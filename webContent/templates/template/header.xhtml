@@ -6,18 +6,26 @@
 <h:body>
     <div class="header-wrap">
         <span class="client-id">
-            <ui:insert name="client" />
+        <c:if test="#{connected}">
+            Bienvenue, <b>#{clientNom} #{clientPrenom}</b>
+        </c:if>
         </span>
-        <span>
-           <!-- <form action="/login" method="post" >
-              <input type="submit" value="Se déconnecter"/>
-            </form>-->
+        <br/>
+        <c:if test="#{connected}">
+            <span>
+               <form action="/logout" method="post" >
+                  <input class="disconnect-button" type="submit" value="Se déconnecter"/>
+                </form>
+            </span>
+        </c:if>
 
+
+
+        <span class="h1-wrapper">
+            <h1>
+                <ui:insert name="pageName"/>
+            </h1>
         </span>
-
-        <h1>
-            <ui:insert name="pageName"/>
-        </h1>
     </div>
 </h:body>
 </html>

@@ -27,7 +27,6 @@ public class ConnectionFilter implements Filter {
         boolean loggedIn = session != null && session.getAttribute("clientId") != null;
         boolean loginRequest = req.getRequestURI().equals(loginURI);
         boolean staticResource = req.getRequestURI().matches(".*[css|jpg|png|gif|js].*");
-        System.out.println(req.getRequestURI());
 
         // Si identifiants corrects: ok, sinon send vers login
         if (loggedIn || loginRequest || staticResource) {

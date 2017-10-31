@@ -8,6 +8,7 @@ import javax.faces.context.FacesContext;
 import javax.persistence.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import java.io.IOException;
 
@@ -67,19 +68,32 @@ public class AbstractDAOImpl implements IAbstractDAO {
     }
 
     /**
-     * Logout
+     * LogoutServlet
      * @param request
      * @param response
      */
     @Override
-    public void logout( HttpServletRequest request, HttpServletResponse response){
-        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+    public void logout(HttpServletRequest request, HttpServletResponse response){
         try {
+            HttpSession session = request.getSession();
+            session.invalidate();
             response.sendRedirect(request.getContextPath() + ServletHelper.SERVLET_LOGIN);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+    }
+
+    /**
+     * Retourne le dernier paramètre de l'uri en entier
+     * @param request
+     * @return
+     */
+    @Override
+    public int getLastUriParameter(HttpServletRequest request){
+        String path = request.getRequestURI();
+        String idStr = path.substring(path.lastIndexOf('/') + 1);
+        return Integer.parseInt(idStr);
     }
 
 

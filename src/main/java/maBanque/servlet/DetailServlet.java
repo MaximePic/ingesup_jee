@@ -14,6 +14,7 @@ public class DetailServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("connected", true);
         response.getWriter().append("<h1>Détail des transactions</h1>");
     }
 }

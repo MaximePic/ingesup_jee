@@ -97,3 +97,32 @@ input[type="submit"]{
 input[type="submit"]:hover{
     background: #333333;
 }
+
+.disconnect-button{
+    background: none;
+    border: none;
+    color: #FFFFFF;
+    text-decoration: underline;
+    cursor: pointer;
+    float: left;
+    text-align: left;
+}
+
+.disconnect-button:hover{
+    background: none !important;
+}
+
+.h1-wrapper{
+    width: 100%;
+    display: inline-table;
+}
+
+.credit{
+    color: #FFFFFF;
+    background: #78AB46
+}
+
+.debit{
+    color: #FFFFFF;
+    background: #8B3A3A
+}

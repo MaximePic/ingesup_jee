@@ -1,6 +1,7 @@
 package maBanque.dao.impl;
 
 import maBanque.dao.IAbstractDAO;
+import maBanque.dao.ICompteDAO;
 import maBanque.dao.ITransactionDAO;
 import maBanque.model.Compte;
 import maBanque.model.Transaction;
@@ -13,6 +14,7 @@ import java.util.List;
 
 public class TransactionDAOImpl implements ITransactionDAO{
     public static IAbstractDAO abstractDAO = new AbstractDAOImpl();
+    public static ICompteDAO compteDAO = new CompteDAOImpl();
 
     @Override
     public void createTransaction(String libelle, double montant, Compte compteDebiteur, Compte compteCrediteur) {
@@ -40,12 +42,17 @@ public class TransactionDAOImpl implements ITransactionDAO{
 
     @Override
     public List<Transaction> getTransferListByAccountId(int compteId) {
+
+
         //Create connexion
         EntityManager em =  abstractDAO.newConnexion();
 
+        Compte compte = compteDAO.getAccountById(compteId);
+
+
         //Requete
-        Query query = em.createQuery("SELECT t FROM Transaction t where t.compteCrediteur  = :compteId or t.compteCrediteur  = :compteId")
-                .setParameter("compteId", compteId);
+        Query query = em.createQuery("SELECT t FROM Transaction t where t.compteCrediteur  = :compte or t.compteDebiteur  = :compte")
+                .setParameter("compte", compte);
 
         List<Transaction> transferList  = query.getResultList();
 

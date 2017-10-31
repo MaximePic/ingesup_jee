@@ -8,23 +8,30 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
+                xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" xmlns:c="http://java.sun.com/jsp/jstl/core">
 
     <ui:define name="title">Transaction</ui:define>
 
-    <ui:define name="pageName">Transactions</ui:define>
+    <ui:define name="pageName">Transactions | <b>#{accountName}</b> - n#{accountNumber} </ui:define>
 
     <ui:define name="content">
-        <p:dataTable var="account" value="#{accountList}">
-            <p:column headerText="Numéro de compte">
-                <h:outputText value="#{account.numero}"/>
+
+        <p:dataTable var="transfer" value="#{transferList}">
+            <p:column headerText="Nom de la transaction">
+                <h:outputText value="#{transfer.libelle}"/>
             </p:column>
 
-            <p:column headerText="Nom du compte">
-                <h:outputText value="#{account.libelle}"/>
+            <p:column styleClass="#{(transfer.compteCrediteur.numero eq account) eq true ? 'credit':'debit'}" headerText="Montant de la transaction">
+
+                <h:outputText rendered="#{(transfer.compteCrediteur.numero eq account) eq true}"
+                               value="+ #{transfer.montant}€"/>
+
+                <h:outputText rendered="#{(transfer.compteDebiteur.numero eq account) eq true}"
+                              value="- #{transfer.montant}€"/>
+
             </p:column>
-            <p:column headerText="Montant">
-                <h:outputText value="#{account.montant}"/>
+            <p:column headerText="Date de la transaction">
+                <h:outputText value="#{transfer.date}"/>
             </p:column>
         </p:dataTable>
     </ui:define>

@@ -19,9 +19,16 @@ public interface IAbstractDAO {
     void closeConnexion(EntityManager em);
 
     /**
-     * Logout un utilisateur
+     * LogoutServlet un utilisateur
      * @param request
      * @param response
      */
     void logout(HttpServletRequest request, HttpServletResponse response);
+
+    /**
+     * Retourne le dernier param d'une URI en entier
+     * @param request
+     * @return
+     */
+    int getLastUriParameter(HttpServletRequest request);
 }
