@@ -12,8 +12,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/home")
-public class AccueilServlet extends HttpServlet {
+@WebServlet("/comptes")
+public class CompteServlet extends HttpServlet {
 
     CompteController compteCtrl = new CompteController();
 
@@ -35,6 +35,6 @@ public class AccueilServlet extends HttpServlet {
         List<Compte> accountList = compteCtrl.getAccountsByClientId(clientId);
         request.setAttribute("connected", true);
         request.setAttribute("accountList", accountList);
-        request.getRequestDispatcher("/templates/accueil.xhtml").forward(request, response);
+        request.getRequestDispatcher("/templates/compte.xhtml").forward(request, response);
     }
 }

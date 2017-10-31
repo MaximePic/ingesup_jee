@@ -16,15 +16,17 @@
 
    <!-- <fmt:setBundle basename="Message" var="lang"/>-->
 
-    <ui:define name="title">Accueil</ui:define>
+    <ui:define name="title">Liste des comptes</ui:define>
 
-    <ui:define name="pageName">Accueil</ui:define>
+    <ui:define name="pageName">Liste des comptes</ui:define>
 
     <!--<fmt:message key="message.accueil" bundle="${lang}"/>-->
 
 
     <ui:define name="content">
-        <p:dataTable var="account" value="#{accountList}">
+        <p:dataTable var="account" value="#{accountList}"
+                     paginator="true"
+                     rowsPerPageTemplate="5,10,15">
             <p:column headerText="Numéro de compte">
                 <h:outputText value="#{account.numero}"/>
             </p:column>
@@ -33,7 +35,7 @@
                 <h:outputText value="#{account.libelle}"/>
             </p:column>
             <p:column headerText="Montant">
-                <h:outputText value="#{account.montant}"/>
+                <h:outputText value="#{account.montant}€"/>
             </p:column>
             <p:column>
                 <form action="/transactions/#{account.numero}">

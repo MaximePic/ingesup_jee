@@ -1,3 +1,7 @@
 .ui-selectonemenu .ui-selectonemenu-label{
     color: #222;
 }
+
+.ui-datatable table{
+    border-collapse: inherit !important;
+}

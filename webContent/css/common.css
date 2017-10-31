@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Libre+Franklin:300, 400');
 
+
+/************COMMON************/
 html{
     height: 100%;
 }
@@ -33,10 +35,6 @@ td{
     text-align: center !important;
 }
 
-.ui-datatable table{
-    border-collapse: inherit !important;
-}
-
 table{
     border:none !important;
 }
@@ -46,6 +44,33 @@ label{
     margin-right: 50px;
 }
 
+input[type="submit"]{
+    display: block;
+    background: #79564A;
+    width: 314px;
+    padding: 12px;
+    cursor: pointer;
+    color: #fff;
+    border: 0px;
+    margin: auto;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    font-size: 17px;
+    transition: all 0.3s ease;
+}
+
+input[type="submit"]:hover{
+    background: #333333;
+}
+
+a{
+    text-decoration: none;
+    position: relative;
+}
+
+
+/************LOGIN************/
 .form{
     width: 400px;
     height: 230px;
@@ -78,26 +103,7 @@ label{
     border: 2px solid #1abc9d
 }
 
-input[type="submit"]{
-    display: block;
-    background: #79564A;
-    width: 314px;
-    padding: 12px;
-    cursor: pointer;
-    color: #fff;
-    border: 0px;
-    margin: auto;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    font-size: 17px;
-    transition: all 0.3s ease;
-}
-
-input[type="submit"]:hover{
-    background: #333333;
-}
-
+/************HEADER************/
 .disconnect-button{
     background: none;
     border: none;
@@ -117,6 +123,21 @@ input[type="submit"]:hover{
     display: inline-table;
 }
 
+.home-button{
+    background: none;
+    border: none;
+    color: #FFFFFF;
+    cursor: pointer;
+    float: right;
+    text-align: center;
+    width: 10% !important;
+}
+
+.home-button:hover{
+    background: none !important;
+}
+
+/************TRANSACTIONS************/
 .credit{
     color: #FFFFFF;
     background: #78AB46
@@ -125,4 +146,77 @@ input[type="submit"]:hover{
 .debit{
     color: #FFFFFF;
     background: #8B3A3A
+}
+
+/************HOME************/
+
+.home-wrap{
+    width: 100%;
+    overflow: auto;
+}
+
+.home-fleft{
+    float: left;
+    width:50%;
+    height:400px;
+    background: #FFFACC;
+    display: table;
+
+}
+
+.home-fright{
+    float: right;
+    width: 50%;
+    height: 400px;
+    background: #FFEFBD;
+    display: table;
+}
+
+.home-fleft:hover{
+    width: 50%;
+}
+
+.home-fright:hover{
+    width:50%;
+}
+
+.home-block{
+    display: table-cell;
+    vertical-align: middle;
+    border: 10px solid #FFFFFF;
+}
+
+.home-link{
+    color: #79564A !important;
+    font-family: 'Libre Franklin', sans-serif;
+    text-transform: uppercase;
+    text-align: center;
+    margin: auto;
+    white-space: nowrap;
+    vertical-align: middle;
+    background: none !important;
+    display: block;
+}
+
+/*effect-underline*/
+a.effect-underline:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    display: inline-block;
+    height: 1em;
+    width: 100%;
+    border-bottom: 1px solid;
+    margin-top: 10px;
+    opacity: 0;
+    -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+    transition: opacity 0.35s, transform 0.35s;
+    -webkit-transform: scale(0,1);
+    transform: scale(0,1);
+}
+
+a.effect-underline:hover:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
 }

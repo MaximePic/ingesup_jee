@@ -6,13 +6,17 @@ import org.apache.logging.log4j.Logger;
 import javax.persistence.*;
 
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 import static maBanque.constants.Constants.PERSISTENCE_UNIT_NAME;
 import static maBanque.model.CRUD.*;
 
 public class GenerateJDD {
     private static EntityManagerFactory factory;
-    private static Logger logger = LogManager.getLogger(GenerateJDD.class);
+    private static Integer MAX_ACCOUNTS = 20;
+    private static Integer MIN_VALUE = 0;
+    private static Integer MAX_MONEY = 10000;
+    private static Integer MAX_CLIENTS = 5;
 
     public static void main(String[] args) {
         //Define variables
@@ -25,9 +29,11 @@ public class GenerateJDD {
             //Create factory
             em.getTransaction().begin();
 
+            //**********STANDARD DATA**********//
             //Create Client
             Client client = createClient("root", "root", "Pic", "Maxime");
             Client client2 = createClient("admin", "admin", "Administrator", "Administrator");
+
 
             //Create Compte
             Compte compte1 = createAccount(client, "Livret A", 1000.00);
@@ -49,6 +55,21 @@ public class GenerateJDD {
             em.persist(compte2);
             em.persist(transaction);
             em.persist(transaction2);
+
+
+            //**********GENERATED DATA**********//
+
+            //Generate Accounts
+            for (int i = 0; i<MAX_ACCOUNTS; i++){
+                Compte tempCompte = createAccount( client, "Compte"+ i, ThreadLocalRandom.current().nextInt(MIN_VALUE, MAX_MONEY));
+                em.persist(tempCompte);
+            }
+
+            //Generate clients
+            for (int i = 0; i<MAX_CLIENTS; i++){
+               Client tempClient = createClient("login"+i, "password","client"+i, "Bot"+i);
+                em.persist(tempClient);
+            }
 
             //Commit
             em.getTransaction().commit();

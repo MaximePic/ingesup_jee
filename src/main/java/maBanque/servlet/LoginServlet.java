@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("connected", true);
 
             //On redirige vers page d'accueil
-            response.sendRedirect(request.getContextPath() + ServletHelper.SERVLET_ACCOUNT);
+            response.sendRedirect(request.getContextPath() + ServletHelper.SERVLET_HOME);
         }
 
 
