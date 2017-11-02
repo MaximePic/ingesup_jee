@@ -13,14 +13,14 @@
         <br/>
         <c:if test="#{connected}">
             <span>
-               <form action="/logout" method="post" >
+                <a href="/logout" class="disconnect-button">Se déconnecter</a>
+
+               <!--<form action="/logout" method="post" >
                   <input class="disconnect-button" type="submit" value="Se déconnecter"/>
-                </form>
+                </form>-->
             </span>
             <span>
-                <form action="/home">
-                    <input class="home-button" type="submit" value="Accueil"/>
-                </form>
+                <a href="/home" class="home-button">Accueil</a>
             </span>
         </c:if>
 

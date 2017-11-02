@@ -23,7 +23,7 @@ public class CompteServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        HttpSession session = request.getSession();
+        HttpSession session = request.getSession(false);
         int clientId = (int) session.getAttribute("clientId");
         String clientNom = (String) session.getAttribute("clientNom");
         String clientPrenom = (String) session.getAttribute("clientPrenom");

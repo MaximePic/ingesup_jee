@@ -30,8 +30,11 @@ public class LoginServlet extends HttpServlet {
 
         if(login != null && password!= null){
             userConnected = loginController.findClientByCred(login, password);
-            userConnectedId = userConnected.getClientID();
-        }
+            if(userConnected != null){
+                userConnectedId = userConnected.getClientID();
+                }
+            }
+
 
         //Si les identifiants sont bon
         if(userConnectedId != 0){
@@ -44,10 +47,9 @@ public class LoginServlet extends HttpServlet {
 
             //On redirige vers page d'accueil
             response.sendRedirect(request.getContextPath() + ServletHelper.SERVLET_HOME);
+        }else{
+            response.sendRedirect(request.getContextPath() + ServletHelper.SERVLET_LOGIN);
         }
-
-
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

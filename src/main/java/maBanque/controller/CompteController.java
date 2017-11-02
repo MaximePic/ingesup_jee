@@ -38,7 +38,7 @@ public class CompteController {
 
 
     /**
-     * Virement entre 2 comptes
+     * VirementServlet entre 2 comptes
      * @param sourceAccountNum compte debiteur
      * @param destinationAccountNum compte crediteur
      * @param montant montant de la transaction

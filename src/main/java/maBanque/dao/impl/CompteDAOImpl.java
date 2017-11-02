@@ -109,12 +109,17 @@ public class CompteDAOImpl extends AbstractDAOImpl implements ICompteDAO {
 
     }
 
+    /**
+     * Récupère un compte pasr ID
+     * @param accountId
+     * @return
+     */
     @Override
     public Compte getAccountById(int accountId) {
         //Create connexion
         EntityManager em = abstractDAO.newConnexion();
 
-      Compte compte = em.find(Compte.class, accountId);
+        Compte compte = em.find(Compte.class, accountId);
 
 
         //Commit
@@ -125,5 +130,4 @@ public class CompteDAOImpl extends AbstractDAOImpl implements ICompteDAO {
 
         return compte;
     }
-
 }
