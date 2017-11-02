@@ -69,6 +69,29 @@ a{
     position: relative;
 }
 
+.classicButton{
+    display: block;
+    background: #79564A;
+    width: 314px;
+    padding: 12px;
+    cursor: pointer;
+    color: #fff;
+    border: 0px;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    font-size: 17px;
+    transition: all 0.3s ease;
+}
+
+.classicButton:hover{
+    background: #333333;
+}
+
+.virement-column{
+    text-align: left !important;
+}
+
 
 /************LOGIN************/
 .form{
@@ -168,7 +191,7 @@ a{
     float: right;
     width: 50%;
     height: 400px;
-    background: #FFEFBD;
+    background: #FFFACC;
     display: table;
 }
 
@@ -178,6 +201,13 @@ a{
 
 .home-fright:hover{
     width:50%;
+}
+
+.home-bottom{
+    width: 100%;
+    height: 250px;
+    background: #FFFACC;
+    display: table;
 }
 
 .home-block{

@@ -16,7 +16,8 @@
     <ui:define name="content">
 
         <h:form id="virement-form">
-            <h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5" id="virment-panel" >
+            <h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5" id="virement-panel"
+                         columnClasses="virement-column, virement-column">
 
                 <!-- Débit -->
                 <p:outputLabel for="debiter" value="Compte à débiter: " />
@@ -62,8 +63,7 @@
                              compteCtrl.transactionBean.compteDebiteur,
                              compteCtrl.transactionBean.compteCrediteur,
                              compteCtrl.transactionBean.montant)}"
-
-                             process="@this" update="growl"  styleClass="ui-priority-primary" />
+                             process="@this" update="growl"  styleClass="classicButton" />
 
             <p:growl id="growl" showDetail="true" sticky="true" />
         </h:form>
