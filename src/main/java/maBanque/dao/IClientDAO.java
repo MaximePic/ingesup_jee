@@ -6,5 +6,5 @@ public interface IClientDAO {
      * @param clientId
      * @param password
      */
-    void changePassword(Integer clientId, String password);
+    boolean changePassword(Integer clientId, String password);
 }

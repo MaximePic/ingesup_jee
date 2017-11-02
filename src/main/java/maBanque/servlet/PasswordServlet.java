@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+import static maBanque.constants.Constants.PASSWORD_REGEX;
+
 @WebServlet("/change-password")
 public class PasswordServlet extends HttpServlet {
     IClientDAO clientDAO = new ClientDAOImpl();
@@ -29,9 +31,7 @@ public class PasswordServlet extends HttpServlet {
             HttpSession session = request.getSession(false);
             Integer clientId = (Integer) session.getAttribute("clientId");
 
-            if(clientId != null){
-                clientDAO.changePassword(clientId, newPassword);
-            }
+            clientDAO.changePassword(clientId, newPassword);
 
         }
 

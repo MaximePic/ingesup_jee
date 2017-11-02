@@ -5,11 +5,11 @@ import maBanque.model.Client;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
+import java.util.Date;
+
+import static maBanque.constants.Constants.EXPIRATION_COOKIE;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
@@ -54,6 +54,14 @@ public class LoginServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("connected", false);
+
+        for(Cookie cookie: request.getCookies()){
+            if(cookie.getName().equals(EXPIRATION_COOKIE)){
+                if(new Date().getTime() > Long.parseLong(cookie.getValue())){
+                    request.setAttribute("expirationMessage", "Session has expired");
+                }
+            }
+        }
         request.getRequestDispatcher("/templates/login.xhtml").forward(request, response);
     }
 

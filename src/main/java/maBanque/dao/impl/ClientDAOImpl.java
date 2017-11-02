@@ -6,6 +6,8 @@ import maBanque.dao.IClientDAO;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import static maBanque.constants.Constants.PASSWORD_REGEX;
+
 public class ClientDAOImpl extends AbstractDAOImpl implements IClientDAO {
 
     public static IAbstractDAO abstractDAO = new AbstractDAOImpl();
@@ -16,9 +18,13 @@ public class ClientDAOImpl extends AbstractDAOImpl implements IClientDAO {
      * @param password
      */
     @Override
-    public void changePassword(Integer clientId, String password) {
+    public boolean changePassword(Integer clientId, String password) {
         //Create connexion
         EntityManager em = abstractDAO.newConnexion();
+
+        if(!password.matches(PASSWORD_REGEX) || clientId == null){
+            return false;
+        }
 
 
         //Requete de débit du compte
@@ -33,6 +39,8 @@ public class ClientDAOImpl extends AbstractDAOImpl implements IClientDAO {
 
         //Fermeture de la connexion
         abstractDAO.closeConnexion(em);
+
+        return true;
 
     }
 
