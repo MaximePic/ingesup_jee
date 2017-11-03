@@ -6,26 +6,26 @@
                 xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets">
 
-    <ui:define name="title">Accueil</ui:define>
+    <ui:define name="title">#{msg['header.home']}</ui:define>
 
-    <ui:define name="pageName">Accueil</ui:define>
+    <ui:define name="pageName">#{msg['header.home']}</ui:define>
 
     <ui:define name="content">
         <div class="home-wrap">
             <div class="home-fleft">
                 <div class="home-block">
-                    <a href="/comptes" class="effect-underline home-link">Accéder aux comptes</a>
+                    <a href="/comptes" class="effect-underline home-link">#{msg['home.accounts']}</a>
                 </div>
             </div>
             <div class="home-fright">
                 <div class="home-block">
-                    <a href="/virements" class="effect-underline home-link">Faire un virement</a>
+                    <a href="/virements" class="effect-underline home-link">#{msg['home.transfers']}</a>
                 </div>
             </div>
             <div class="home-bottom">
                 <div class="home-block">
-                    <a href="/change-password"
-                       class="effect-underline home-link" style="color: #FFFFFF !important;">Changer mon mot de passe</a>
+                    <a href="/changePassword"
+                       class="effect-underline home-link" style="color: #FFFFFF !important;">#{msg['home.password']}</a>
                 </div>
             </div>
         </div>

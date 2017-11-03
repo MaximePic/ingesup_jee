@@ -3,8 +3,7 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:c="http://java.sun.com/jsp/jstl/core"
-      xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <h:head>
     <!-- Imports -->
@@ -17,12 +16,24 @@
     </title>
 </h:head>
 
+
+
 <!-- Header du template -->
 <ui:include src="header.xhtml" />
 
 <!-- Content du template -->
 <h:body>
-    <ui:insert name="content"/>
+    <f:view locale="#{localeManagedBean.locale}">
+        <c:if test="#{connected}">
+            <div style="background: #795548">
+                <h:form>
+                    <h:commandLink style="color:#FFFFFF; margin: 0px 30px" action="#{localeManagedBean.changeLanguage('en')}" value="English" />
+                    <h:commandLink style="color:#FFFFFF; margin: 0px 30px" action="#{localeManagedBean.changeLanguage('fr')}" value="French" />
+                </h:form>
+            </div>
+        </c:if>
+        <ui:insert name="content"/>
+    </f:view>
 </h:body>
 
 <!-- Footer du template

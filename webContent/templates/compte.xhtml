@@ -7,44 +7,37 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                xmlns:p="http://primefaces.org/ui"
-                xmlns:fmt="http://java.sun.com/jsp/jstl/fmt" xmlns:c="http://java.sun.com/jsp/jstl/core">
-
-    <!--<c:set var="language" value="${not empty param.language ? param.language : not empty language ? language : pageContext.request.locale}" scope="session" />
-    <fmt:setLocale value="${language}"/>-->
+                xmlns:p="http://primefaces.org/ui">
 
 
-   <!-- <fmt:setBundle basename="Message" var="lang"/>-->
+    <ui:define name="title">#{msg['account.list']}</ui:define>
 
-    <ui:define name="title">Liste des comptes</ui:define>
+    <ui:define name="pageName">#{msg['account.list']}</ui:define>
 
-    <ui:define name="pageName">Liste des comptes</ui:define>
-
-    <!--<fmt:message key="message.accueil" bundle="${lang}"/>-->
 
 
     <ui:define name="content">
         <form action="/createAccount">
             <input style="margin: 30px 0px 30px 0px;"
-                   type="submit" value="Créer un compte" />
+                   type="submit" value="#{msg['account.create']}" />
         </form>
 
         <p:dataTable var="account" value="#{accountList}"
                      paginator="true"
                      rowsPerPageTemplate="5,10,15">
-            <p:column headerText="Numéro de compte">
+            <p:column headerText="#{msg['account.number']}">
                 <h:outputText value="#{account.numero}"/>
             </p:column>
 
-            <p:column headerText="Nom du compte">
+            <p:column headerText="#{msg['account.name']}">
                 <h:outputText value="#{account.libelle}"/>
             </p:column>
-            <p:column headerText="Montant">
+            <p:column headerText="#{msg['account.amount']}">
                 <h:outputText value="#{account.montant}€"/>
             </p:column>
             <p:column>
                 <form action="/transactions/#{account.numero}">
-                    <input type="submit" value="Consulter" />
+                    <input type="submit" value="#{msg['account.consult']}" />
                 </form>
             </p:column>
         </p:dataTable>

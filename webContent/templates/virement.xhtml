@@ -9,9 +9,9 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui" xmlns:c="http://java.sun.com/jsp/jstl/core">
 
-    <ui:define name="title">Virement</ui:define>
+    <ui:define name="title">#{msg['transfer.transfer']}</ui:define>
 
-    <ui:define name="pageName">Virement</ui:define>
+    <ui:define name="pageName">#{msg['transfer.transfer']}</ui:define>
 
     <ui:define name="content">
 
@@ -20,7 +20,7 @@
                          columnClasses="virement-column, virement-column">
 
                 <!-- Débit -->
-                <p:outputLabel for="debiter" value="Compte à débiter: " />
+                <p:outputLabel for="debiter" value="#{msg['transfer.account.debit']}: " />
                 <p:selectOneMenu id="debiter" immediate="true" value="#{compteCtrl.transactionBean.compteDebiteur}">
                     <c:forEach items="#{accountList}" var="compte">
                         <f:selectItem itemLabel="#{compte.libelle}" itemValue="#{compte.numero}" />
@@ -30,7 +30,7 @@
                 </p:selectOneMenu>
 
                 <!-- Montant -->
-                <p:outputLabel for="montant" value="Montant de la transaction: " />
+                <p:outputLabel for="montant" value="#{msg['transfer.ammount']}: " />
                 <p:column>
                     <p:inputNumber id="montant"  symbol=" €" symbolPosition="s"
                                    decimalSeparator="," thousandSeparator="."
@@ -41,7 +41,7 @@
 
 
                 <!-- Crédit -->
-                <p:outputLabel for="crediter" value="Compte à créditer: " />
+                <p:outputLabel for="crediter" value="#{msg['transfer.account.credit']}: " />
                 <p:selectOneMenu id="crediter" immediate="true" value="#{compteCtrl.transactionBean.compteCrediteur}">
                     <c:forEach items="#{accountList}" var="compte">
                         <f:selectItem itemLabel="#{compte.libelle}" itemValue="#{compte.numero}" />
@@ -51,13 +51,13 @@
 
 
                 <!-- Libelle -->
-                <p:outputLabel for="raison" value="Raison du virement: " />
+                <p:outputLabel for="raison" value="#{msg['transfer.reason']}: " />
                 <p:inputText id="raison" value="#{compteCtrl.transactionBean.libelle}">
                     <p:ajax event="keyup" update="@this" process="@this"/>
                 </p:inputText>
             </h:panelGrid>
 
-            <p:commandButton value="Valider"
+            <p:commandButton value="#{msg['common.validate']}"
                              actionListener="#{compteCtrl.virement(
                              compteCtrl.transactionBean.libelle,
                              compteCtrl.transactionBean.compteDebiteur,

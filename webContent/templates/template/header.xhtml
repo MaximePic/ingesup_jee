@@ -7,16 +7,16 @@
     <div class="header-wrap">
         <span class="client-id">
         <c:if test="#{connected}">
-            Bienvenue, <b>#{clientNom} #{clientPrenom}</b>
+            #{msg['header.welcome']}, <b>#{clientNom} #{clientPrenom}</b>
         </c:if>
         </span>
         <br/>
         <c:if test="#{connected}">
             <span>
-                <a href="/logout" class="disconnect-button">Se déconnecter</a>
+                <a href="/logout" class="disconnect-button">#{msg['header.disconnect']}</a>
             </span>
             <span>
-                <a href="/home" class="home-button">Accueil</a>
+                <a href="/home" class="home-button">#{msg['header.home']}</a>
             </span>
         </c:if>
 
