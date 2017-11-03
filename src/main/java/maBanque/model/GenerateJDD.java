@@ -67,7 +67,7 @@ public class GenerateJDD {
 
             //Generate clients
             for (int i = 0; i<MAX_CLIENTS; i++){
-               Client tempClient = createClient("login"+i, "password","client"+i, "Bot"+i);
+               Client tempClient = createClient("login"+i, "2%Azerty","client"+i, "Bot"+i);
                 em.persist(tempClient);
             }
 

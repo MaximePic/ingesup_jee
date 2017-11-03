@@ -55,13 +55,6 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("connected", false);
 
-        for(Cookie cookie: request.getCookies()){
-            if(cookie.getName().equals(EXPIRATION_COOKIE)){
-                if(new Date().getTime() > Long.parseLong(cookie.getValue())){
-                    request.setAttribute("expirationMessage", "Session has expired");
-                }
-            }
-        }
         request.getRequestDispatcher("/templates/login.xhtml").forward(request, response);
     }
 

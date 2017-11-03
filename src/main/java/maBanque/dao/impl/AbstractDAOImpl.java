@@ -75,9 +75,10 @@ public class AbstractDAOImpl implements IAbstractDAO {
     @Override
     public void logout(HttpServletRequest request, HttpServletResponse response){
         try {
+            response.sendRedirect(request.getContextPath() + ServletHelper.SERVLET_LOGIN);
             HttpSession session = request.getSession();
             session.invalidate();
-            response.sendRedirect(request.getContextPath() + ServletHelper.SERVLET_LOGIN);
+
         } catch (IOException e) {
             e.printStackTrace();
         }

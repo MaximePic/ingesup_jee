@@ -1,7 +1,9 @@
 package maBanque.dao.impl;
 
 import maBanque.dao.IAbstractDAO;
+import maBanque.dao.IClientDAO;
 import maBanque.dao.ICompteDAO;
+import maBanque.model.Client;
 import maBanque.model.Compte;
 
 import javax.persistence.EntityManager;
@@ -11,6 +13,7 @@ import java.util.List;
 
 public class CompteDAOImpl extends AbstractDAOImpl implements ICompteDAO {
         public static IAbstractDAO abstractDAO = new AbstractDAOImpl();
+        public static IClientDAO clientDAO = new ClientDAOImpl();
 
     /**
      * Méthode permettant de récupérer les comptes d'un client
@@ -110,7 +113,7 @@ public class CompteDAOImpl extends AbstractDAOImpl implements ICompteDAO {
     }
 
     /**
-     * Récupère un compte pasr ID
+     * Récupère un compte par ID
      * @param accountId
      * @return
      */
@@ -129,5 +132,29 @@ public class CompteDAOImpl extends AbstractDAOImpl implements ICompteDAO {
         abstractDAO.closeConnexion(em);
 
         return compte;
+    }
+
+    @Override
+    public void createAccount(String libelle, int clientId) {
+
+
+        //Create connexion
+        EntityManager em =  abstractDAO.newConnexion();
+
+        Client client = em.find(Client.class, clientId);
+
+        Compte compte = new Compte();
+        compte.setClient(client);
+        compte.setLibelle(libelle);
+        compte.setMontant(0);
+
+        //persist
+        em.persist(compte);
+
+        //Commit
+        em.getTransaction().commit();
+
+        //Fermeture de la connexionœ
+        abstractDAO.closeConnexion(em);
     }
 }

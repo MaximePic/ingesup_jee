@@ -15,7 +15,7 @@ import java.io.IOException;
 
 import static maBanque.constants.Constants.PASSWORD_REGEX;
 
-@WebServlet("/change-password")
+@WebServlet("/changePassword")
 public class PasswordServlet extends HttpServlet {
     IClientDAO clientDAO = new ClientDAOImpl();
 

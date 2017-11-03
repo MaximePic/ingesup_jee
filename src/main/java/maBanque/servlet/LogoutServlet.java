@@ -14,11 +14,12 @@ import java.io.IOException;
 public class LogoutServlet extends HttpServlet {
     IAbstractDAO abstractDAO = new AbstractDAOImpl();
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        abstractDAO.logout(request, response);
+
+
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        abstractDAO.logout(request, response);
     }
 }

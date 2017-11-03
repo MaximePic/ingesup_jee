@@ -24,6 +24,11 @@
 
 
     <ui:define name="content">
+        <form action="/createAccount">
+            <input style="margin: 30px 0px 30px 0px;"
+                   type="submit" value="Créer un compte" />
+        </form>
+
         <p:dataTable var="account" value="#{accountList}"
                      paginator="true"
                      rowsPerPageTemplate="5,10,15">
