@@ -19,13 +19,13 @@ public class ClientDAOImpl extends AbstractDAOImpl implements IClientDAO {
      */
     @Override
     public boolean changePassword(Integer clientId, String password) {
-        //Create connexion
-        EntityManager em = abstractDAO.newConnexion();
 
         if(!password.matches(PASSWORD_REGEX) || clientId == null){
             return false;
         }
 
+        //Create connexion
+        EntityManager em = abstractDAO.newConnexion();
 
         //Requete de débit du compte
         Query query = em.createQuery("UPDATE Client c SET c.password = :password where c.clientID = :clientId")

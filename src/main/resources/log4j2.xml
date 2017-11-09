@@ -7,7 +7,8 @@
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
 
-        <RollingFile name="RollingFile" fileName="logs/rollingFile.log" filePattern="logs/app-%d{MM-dd-yyyy}.log.gz"
+        <RollingFile name="RollingFile" fileName="/home/maxime/Documents/workspace/maBanque/logs/rollingFile.log"
+                     filePattern="/home/maxime/Documents/workspace/maBanque/logs/app-%d{MM-dd-yyyy}.log.gz"
                      ignoreExceptions="false">
             <PatternLayout>
                 <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>

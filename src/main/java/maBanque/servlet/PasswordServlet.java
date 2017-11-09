@@ -24,18 +24,20 @@ public class PasswordServlet extends HttpServlet {
         String newPassword = request.getParameter("new-password");
         String newPasswordConfirm = request.getParameter("new-password-confirm");
 
+        //Non null;
         boolean condition1 = oldPassword != null && newPassword != null && newPasswordConfirm != null;
         boolean condition2 = !oldPassword.isEmpty() && !newPassword.isEmpty() && !newPasswordConfirm.isEmpty();
+        boolean condition3 = newPassword.equals(newPasswordConfirm);
 
-        if(condition1 && condition2){
+        if(condition1 && condition2 && condition3){
             HttpSession session = request.getSession(false);
             Integer clientId = (Integer) session.getAttribute("clientId");
 
             clientDAO.changePassword(clientId, newPassword);
-
+            request.getRequestDispatcher("/templates/login.xhtml").forward(request, response);
         }
 
-        request.getRequestDispatcher("/templates/login.xhtml").forward(request, response);
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
