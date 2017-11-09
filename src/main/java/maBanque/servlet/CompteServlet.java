@@ -15,8 +15,6 @@ import java.util.List;
 @WebServlet("/comptes")
 public class CompteServlet extends HttpServlet {
 
-    CompteController compteCtrl = new CompteController();
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
@@ -31,10 +29,7 @@ public class CompteServlet extends HttpServlet {
         session.setAttribute("clientNom", clientNom);
         session.setAttribute("clientPrenom", clientPrenom);
 
-        //Liste des comptes du client
-        List<Compte> accountList = compteCtrl.getAccountsByClientId(clientId);
         request.setAttribute("connected", true);
-        request.setAttribute("accountList", accountList);
         request.getRequestDispatcher("/templates/compte.xhtml").forward(request, response);
     }
 }

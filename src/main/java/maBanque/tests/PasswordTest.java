@@ -26,7 +26,7 @@ public class PasswordTest {
     }
 
     /**
-     * Test si le password fait plus de 8 characteres
+     * Test si le password a au moins 1 majuscule
      */
     @Test
     public final void shouldHaveOneUppercaseLetter(){
@@ -40,7 +40,7 @@ public class PasswordTest {
     }
 
     /**
-     * Test si le password fait plus de 8 characteres
+     * Test si le password a au moins 1 chiffre
      */
     @Test
     public final void shouldHaveOneNumber(){
@@ -54,10 +54,10 @@ public class PasswordTest {
     }
 
     /**
-     * Test si le password fait plus de 8 characteres
+     * Test si le password est ok
      */
     @Test
-    public final void isCorrect(){
+    public final void shouldBeCorrect(){
         //GIVEN
         int clientID = 1;
         String password = "abcdefG1";
